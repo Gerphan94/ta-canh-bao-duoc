@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import ExpandableTable from "./table";
+import DrugInfoModal from "./thongtinthuoc-modal";
 
 function HomePage() {
+
+    const [showTThuoc, setShowTThuoc] = useState(false);
+
     return (
         <>
             <div className="min-h-screen bg-gray-50">
@@ -37,11 +41,12 @@ function HomePage() {
                             </div>
                         </div>
 
-                        <ExpandableTable />
+                        <ExpandableTable setShowTThuoc={setShowTThuoc} />
 
                     </div>
                 </div>
             </div>
+            <DrugInfoModal show={showTThuoc} setShow={setShowTThuoc} />
         </>
     );
 }

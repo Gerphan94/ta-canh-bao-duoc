@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MdOutlineWarningAmber } from "react-icons/md";
+import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
 
 const data = [
     {
@@ -16,6 +17,7 @@ const data = [
                 patientName: "Nguyễn Văn An",
                 diagnosis: "Cao huyết áp (I10)",
                 accepted: false,
+                i3: true,
                 groups: {
                     note: 'Pha với nước cất',
                     data: [
@@ -36,6 +38,7 @@ const data = [
                 patientName: "Nguyễn Văn An",
                 diagnosis: "Cao huyết áp (I10)",
                 accepted: true,
+                i3: false,
                 groups: {
                     note: 'Pha với nước cất',
                     data: [
@@ -67,6 +70,7 @@ const data = [
                 patientName: "Nguyễn Văn An",
                 diagnosis: "Cao huyết áp (I10)",
                 accepted: true,
+                i3: false,
                 groups: {
                     note: 'Pha với nước cất',
                     data: [
@@ -84,8 +88,12 @@ const data = [
     }
 ];
 
-export default function ExpandableTable() {
+export default function ExpandableTable( {setShowTThuoc}) {
     const [expandedRows, setExpandedRows] = useState([]);
+
+    const handleClickThuoc = () => {
+        setShowTThuoc(true);
+    };
 
     const toggleExpand = (id) => {
         setExpandedRows((prev) =>
@@ -136,14 +144,20 @@ export default function ExpandableTable() {
                                 <td className="border border-gray-300 px-2 py-1">{row.kho}</td>
                                 <td className="border border-gray-300 px-2 py-1">{row.ngayDuyet}</td>
                                 <td className="border border-gray-300 px-2 py-1">
-                                    <button
-                                        disabled={row.trangThai === "Đã duyệt"}
-                                        className={`border px-2 py-1 rounded-md bg-blue-700 text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 `}>Duyệt phát</button>
+                                    <div className="flex gap-3">
+                                        <button
+                                            disabled={row.trangThai === "Đã duyệt"}
+                                            className={`border px-2 py-1 rounded-md bg-blue-700 text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 `}>
+                                            Duyệt phát
+                                        </button>
+                                       
+                                    </div>
+
                                 </td>
                             </tr>
                             {expandedRows.includes(row.id) && (
                                 <tr>
-                                    <td colSpan={8} className="border border-gray-300 p-3 bg-gray-50">
+                                    <td colSpan={8} className="border border-gray-300 px-6 py-3 bg-gray-50">
                                         {row.details.map((detail, i) => (
                                             <div key={i} className="mb-2 text-left border rounded-xl">
                                                 <div className="flex justify-between bg-gray-300 p-2 rounded-t-lg">
@@ -153,7 +167,17 @@ export default function ExpandableTable() {
                                                         <div><strong>Chẩn đoán</strong> {detail.diagnosis}</div>
 
                                                     </div>
-                                                    <div>
+                                                    <div className="flex gap-4 items-center">
+                                                        {detail.i3 && (
+                                                            <a
+                                                                className="inline-block border px-2 py-1 rounded-md bg-blue-700 text-white "
+                                                                href="http://172.20.9.22/preview/10dc653d-7abd-4648-a24a-726bbf513dc3"
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                            >
+                                                                Xem I3
+                                                            </a>
+                                                        )}
                                                         <button className={`w-24 text-sm ${detail.accepted ? "bg-red-500 text-white" : "bg-green-500 text-white"} px-4 py-1 rounded`}>
                                                             {detail.accepted ? "Hủy duyệt" : "Duyệt"}
                                                         </button>
@@ -166,7 +190,7 @@ export default function ExpandableTable() {
                                                             <div key={idx} className="">
                                                                 <div className="flex gap-2 items-center">
                                                                     {group.day > 0 && <span className="font-medium border rounded-full w-5 h-5 flex items-center justify-center">{group.day}</span>}
-                                                                    <div className="font-bold underline">{group.name}</div>
+                                                                    <div className="font-bold underline" onClick={() => handleClickThuoc(group.name)}>{group.name}</div>
                                                                     <div>{group.desc}</div>
                                                                 </div>
                                                             </div>
@@ -179,7 +203,7 @@ export default function ExpandableTable() {
                                                             <div className="flex gap-2 items-center">
                                                                 {item.day > 0 && <span className="font-medium border rounded-full w-5 h-5 flex items-center justify-center">{item.day}</span>}
 
-                                                                <div className="font-bold underline">{item.name}</div>
+                                                                <div className="font-bold underline" onClick={() => handleClickThuoc}>{item.name}</div>
                                                                 <div>{item.desc}</div>
                                                                 {item.ard && <span >
                                                                     <MdOutlineWarningAmber className=" text-red-500" />
