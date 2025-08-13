@@ -8,7 +8,8 @@ const data = [
         phieu: "Phiếu lĩnh thuốc lần 1",
         khoa: "Kho thuốc hồi tỉnh",
         ngay: "13/08/2025",
-        trangThai: "Đang duyệt",
+        trangthaiid: 0,
+        trangThai: "Chưa duyệt",
         kho: "Kho Dược nội trú C",
         ngayDuyet: "",
         details: [
@@ -19,14 +20,14 @@ const data = [
                 diagnosis: "Cao huyết áp (I10)",
                 accepted: false,
                 i3: true,
-                groups: {
+                groups: [{
                     note: 'Pha với nước cất',
                     data: [
-                        { name: "Paracetamol 500mg", desc: "Uống 2  lần/lần * 3 lần/ngày", day: 0 },
-                        { name: "Amoxicillin 250mg", desc: "Uống 1  lần/lần * 2 lần/ngày", day: 1 }
+                        { name: "Rocephin 1g", desc: "Ceftriaxone x 1 Lọ", day: 0, ard: false },
+                        { name: "Augmentin 1.2g", desc: "Amoxicillin + Clavulanic acid x 1 Lọ", day: 1, ard: false }
                     ]
 
-                },
+                }],
                 pharmacy: [
                     { name: "Cozaar 50mg", desc: "Losartan x 1 Viên", use: "Uống 1 viên/lần * 1 lần/ngày", day: 0, ard: true },
                     { name: "Paracetamol 500mg", desc: "Uống 2 viên/lần * 3 lần/ngày", day: 0, ard: false },
@@ -41,20 +42,33 @@ const data = [
                 diagnosis: "Cao huyết áp (I10)",
                 accepted: true,
                 i3: false,
-                groups: {
-                    note: 'Pha với nước cất',
-                    data: [
-                        { name: "Paracetamol 500mg", desc: "Uống 2  lần/lần * 3 lần/ngày", day: 0 },
-                        { name: "Amoxicillin 250mg", desc: "Uống 1  lần/lần * 2 lần/ngày", day: 1 }
-                    ]
+                groups: [
+                    {
+                        note: 'Pha với nước cất',
+                        data: [
+                            { name: "Paracetamol 500mg", desc: "Uống 2  lần/lần * 3 lần/ngày", day: 0 },
+                            { name: "Amoxicillin 250mg", desc: "Uống 1  lần/lần * 2 lần/ngày", day: 1 }
+                        ]
 
-                },
+                    },
+                    {
+                        note: 'Pha với nước cất',
+                        data: [
+                            { name: "Paracetamol 500mg", desc: "Uống 2  lần/lần * 3 lần/ngày", day: 0 },
+                            { name: "Amoxicillin 250mg", desc: "Uống 1  lần/lần * 2 lần/ngày", day: 1 }
+                        ]
+
+                    }
+
+                ],
                 pharmacy: [
                     { name: "Cozaar 50mg", desc: "Losartan x 1 Viên", use: "Uống 1 viên/lần * 1 lần/ngày", day: 0 },
                     { name: "Paracetamol 500mg", desc: "Uống 2 viên/lần * 3 lần/ngày", day: 0, ard: false },
                     { name: "Amoxicillin 250mg", desc: "Uống 1  lần/lần * 2 lần/ngày", day: 2, ard: true }
 
                 ]
+
+
             }
         ]
     },
@@ -63,6 +77,7 @@ const data = [
         phieu: "Phiếu lĩnh thuốc lần 2",
         khoa: "Kho thuốc nội khoa",
         ngay: "12/08/2025",
+        trangthaiid: 1,
         trangThai: "Đã duyệt",
         kho: "Kho Dược Nội trú C",
         ngayDuyet: "08/12/2025 14:30",
@@ -74,14 +89,43 @@ const data = [
                 diagnosis: "Cao huyết áp (I10)",
                 accepted: true,
                 i3: false,
-                groups: {
+
+                pharmacy: [
+                    { name: "Cefepime 1g", desc: "Cefepime x 1 Lọ", day: 0, ard: false },
+                    { name: "Claforan 1g", desc: "Cefotaxime x 1 Lọ", day: 0, ard: false },
+                    { name: "Primaxin 500mg", desc: "Imipenem + Cilastatin x 1 Lọ", day: 1, ard: false },
+                    { name: "Colistin 1 MIU", desc: "Colistimethate sodium x 1 Lọ", day: 1, ard: false },
+                    { name: "Clexane 40mg/0.4ml", desc: "Enoxaparin sodium x 1 Ống", day: 0, ard: false },
+                    { name: "Fortum 1g", desc: "Ceftazidime x 1 Lọ", day: 0, ard: false }
+                ]
+            }
+        ]
+    },
+    {
+        id: 3,
+        phieu: "Phiếu lĩnh thuốc lần 3",
+        khoa: "Kho thuốc nội khoa",
+        ngay: "12/08/2025",
+        trangthaiid: 2,
+        trangThai: "Đã duyệt phát",
+        kho: "Kho Dược Nội trú C",
+        ngayDuyet: "08/12/2025 14:30",
+        details: [
+            {
+                time: '08/12/2025 14:30',
+                pid: "24103239284",
+                patientName: "Nguyễn Văn An",
+                diagnosis: "Cao huyết áp (I10)",
+                accepted: true,
+                i3: false,
+                groups: [{
                     note: 'Pha với nước cất',
                     data: [
                         { name: "Paracetamol 500mg", desc: "Uống 2  lần/lần * 3 lần/ngày", day: 0 },
                         { name: "Amoxicillin 250mg", desc: "Uống 1  lần/lần * 2 lần/ngày", day: 1 }
                     ]
 
-                },
+                }],
                 pharmacy: [
                     "Paracetamol 500mg x 2 Viên (Uống 2 viên/lần * 3 lần/ngày sau ăn)",
                     "Amoxicillin 250mg x 1 Viên (Uống 1 viên/lần * 2 lần/ngày)"
@@ -133,15 +177,11 @@ export default function ExpandableTable({ setShowTThuoc }) {
                                 <td className="border border-gray-300 px-2 py-1">{row.khoa}</td>
                                 <td className="border border-gray-300 px-2 py-1">{row.ngay}</td>
                                 <td className="border border-gray-300 px-2 py-1">
-                                    {row.trangThai === "Đã duyệt" ? (
-                                        <span className="bg-green-100 text-green-800 px-2 py-1 rounded">
-                                            {row.trangThai}
-                                        </span>
-                                    ) : (
-                                        <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
-                                            {row.trangThai}
-                                        </span>
-                                    )}
+
+                                    <span className={`${row.trangthaiid === 1 ? 'bg-green-100 text-green-600' : row.trangthaiid === 2 ? 'bg-blue-100 text-blue-600' : 'bg-red-100 text-red-600'} px-2 py-1 rounded-lg text-sm`}>
+                                        {row.trangThai}
+                                    </span>
+
                                 </td>
                                 <td className="border border-gray-300 px-2 py-1">{row.kho}</td>
                                 <td className="border border-gray-300 px-2 py-1">{row.ngayDuyet}</td>
@@ -172,49 +212,45 @@ export default function ExpandableTable({ setShowTThuoc }) {
                                                             </a>
                                                         )}
                                                         {detail.accepted ?
-                                                            <>
-                                                            
+                                                            <>{row.trangthaiid < 2 &&
                                                                 <button className={`w-24 text-sm  px-4 py-1 rounded bg-red-500 text-white`}>
-                                                                   Hủy duyệt
+                                                                    Hủy duyệt
                                                                 </button>
+                                                            }
                                                             </>
                                                             :
                                                             <>
-                                                            <button className={`w-24 text-sm  px-4 py-1 rounded border bg-white border-red-600 text-red-600`}>
-                                                                   Từ chối
+                                                                <button className={`w-24 text-sm  px-4 py-1 rounded border bg-white border-red-600 text-red-600`}>
+                                                                    Từ chối
                                                                 </button>
                                                                 <button className={`w-24 text-sm  px-4 py-1 rounded border bg-green-600 text-white`}>
                                                                     Duyệt
                                                                 </button>
                                                             </>
-
                                                         }
-
-
-
                                                     </div>
                                                 </div>
-
                                                 <div className="list-disc pl-5 text-sm space-2 text-gray-700 py-4">
-                                                    <div className="border-l-2 border-gray-400 pl-2 mb-1">
-                                                        {detail.groups.data.map((group, idx) => (
-                                                            <div key={idx} className="">
-                                                                <div className="flex gap-2 items-center">
-                                                                    {group.day > 0 && <span className="font-medium border border-black rounded-full w-5 h-5 flex items-center justify-center">{group.day}</span>}
-                                                                    <div className="font-bold underline" onClick={() => handleClickThuoc(group.name)}>{group.name}</div>
-                                                                    <div>{group.desc}</div>
+                                                    {detail.groups && detail.groups.map((g, idx) => (
+                                                        <div className="border-l-2 border-gray-400 pl-2 mb-1 mb-2">
+                                                            {g.data.map((group, idx) => (
+                                                                <div key={idx} className="">
+                                                                    <div className="flex gap-2 items-center">
+                                                                        {group.day > 0 && <span className="font-medium border border-black rounded-full w-5 h-5 flex items-center justify-center">{group.day}</span>}
+                                                                        <div className="font-bold hover:underline" onClick={() => handleClickThuoc(group.name)}>{group.name}</div>
+                                                                        <div>{group.desc}</div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        ))}
-                                                        <div className="pl-2 italic py-1">{detail.groups.note}</div>
-                                                    </div>
-
+                                                            ))}
+                                                            <div className="pl-2 italic py-1">{detail.groups && g.note}</div>
+                                                        </div>
+                                                    ))}
                                                     {detail.pharmacy.map((item, idx) => (
                                                         <div key={idx}>
                                                             <div className="flex gap-2 items-center">
                                                                 {item.day > 0 && <span className="font-medium border border-black rounded-full w-5 h-5 flex items-center justify-center">{item.day}</span>}
 
-                                                                <div className="font-bold underline" onClick={() => handleClickThuoc}>{item.name}</div>
+                                                                <div className="font-bold hover:underline cursor-pointer" onClick={() => handleClickThuoc()}>{item.name}</div>
                                                                 <div>{item.desc}</div>
                                                                 {item.ard && <span >
                                                                     <span className="text-red-500 flex items-center gap-1 border border-red-500 px-2 rounded-xl"><MdOutlineWarningAmber />adr</span>
