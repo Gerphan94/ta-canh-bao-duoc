@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import ExpandableTable from "./table";
 import DrugInfoModal from "./thongtinthuoc-modal";
 
@@ -11,12 +11,12 @@ function HomePage() {
             <div className="min-h-screen bg-gray-50">
                 <div className="flex">
                     {/* Sidebar */}
-                    <div className="w-56 h-screen bg-[#2C43A8] text-white p-6">
+                    <div className="w-56 h-screen fixed bg-[#2C43A8] text-white p-6">
                         <h2 className="text-lg font-semibold">Duyệt thuốc</h2>
                     </div>
 
                     {/* Main Content */}
-                    <div className="flex-1 p-6">
+                    <div className="flex-1 p-6 ml-56">
                         <div className="bg-white p-4 rounded-lg shadow-sm mb-6">
                             <div className="flex items-center gap-4">
                                 <div className="flex items-center gap-2">
@@ -34,6 +34,14 @@ function HomePage() {
                                         defaultValue="2025-08-13"
                                         className="border border-gray-300 rounded px-3 py-1 text-sm"
                                     />
+                                </div>
+                                <div>
+                                    <select className="border border-gray-300 rounded px-3 py-1 text-sm">
+                                        <option value="Tất cả">Tất cả</option>
+                                        <option value="Chưa duyệt">Chưa duyệt</option>
+
+                                        <option value="Đã duyệt">Đã duyệt</option>
+                                    </select>
                                 </div>
                                 <button className="bg-blue-800 text-white px-6 py-2 rounded text-sm font-medium hover:bg-blue-900">
                                     Xem

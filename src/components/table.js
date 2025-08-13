@@ -13,6 +13,7 @@ const data = [
         ngayDuyet: "",
         details: [
             {
+                time: '08/12/2025 14:30',
                 pid: "24103239284",
                 patientName: "Nguyễn Văn An",
                 diagnosis: "Cao huyết áp (I10)",
@@ -34,6 +35,7 @@ const data = [
                 ]
             },
             {
+                time: '08/12/2025 14:30',
                 pid: "24103239284",
                 patientName: "Nguyễn Văn An",
                 diagnosis: "Cao huyết áp (I10)",
@@ -50,7 +52,7 @@ const data = [
                 pharmacy: [
                     { name: "Cozaar 50mg", desc: "Losartan x 1 Viên", use: "Uống 1 viên/lần * 1 lần/ngày", day: 0 },
                     { name: "Paracetamol 500mg", desc: "Uống 2 viên/lần * 3 lần/ngày", day: 0, ard: false },
-                    { name: "Amoxicillin 250mg", desc: "Uống 1  lần/lần * 2 lần/ngày", day: 1, ard: true }
+                    { name: "Amoxicillin 250mg", desc: "Uống 1  lần/lần * 2 lần/ngày", day: 2, ard: true }
 
                 ]
             }
@@ -66,6 +68,7 @@ const data = [
         ngayDuyet: "08/12/2025 14:30",
         details: [
             {
+                time: '08/12/2025 14:30',
                 pid: "24103239284",
                 patientName: "Nguyễn Văn An",
                 diagnosis: "Cao huyết áp (I10)",
@@ -88,7 +91,7 @@ const data = [
     }
 ];
 
-export default function ExpandableTable( {setShowTThuoc}) {
+export default function ExpandableTable({ setShowTThuoc }) {
     const [expandedRows, setExpandedRows] = useState([]);
 
     const handleClickThuoc = () => {
@@ -113,7 +116,6 @@ export default function ExpandableTable( {setShowTThuoc}) {
                         <th className="border border-gray-300 px-2 py-1">TRẠNG THÁI</th>
                         <th className="border border-gray-300 px-2 py-1">KHO</th>
                         <th className="border border-gray-300 px-2 py-1">NGÀY DUYỆT</th>
-                        <th className="px-2"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -143,17 +145,7 @@ export default function ExpandableTable( {setShowTThuoc}) {
                                 </td>
                                 <td className="border border-gray-300 px-2 py-1">{row.kho}</td>
                                 <td className="border border-gray-300 px-2 py-1">{row.ngayDuyet}</td>
-                                <td className="border border-gray-300 px-2 py-1">
-                                    <div className="flex gap-3">
-                                        <button
-                                            disabled={row.trangThai === "Đã duyệt"}
-                                            className={`border px-2 py-1 rounded-md bg-blue-700 text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 `}>
-                                            Duyệt phát
-                                        </button>
-                                       
-                                    </div>
 
-                                </td>
                             </tr>
                             {expandedRows.includes(row.id) && (
                                 <tr>
@@ -161,7 +153,8 @@ export default function ExpandableTable( {setShowTThuoc}) {
                                         {row.details.map((detail, i) => (
                                             <div key={i} className="mb-2 text-left border rounded-xl">
                                                 <div className="flex justify-between bg-gray-300 p-2 rounded-t-lg">
-                                                    <div className=" mb-1 flex gap-2 items-center ">
+                                                    <div className=" flex gap-2 items-center ">
+                                                        <div><strong>Ngày y lệnh:</strong> {detail.time}</div>
                                                         <div><strong>PID:</strong> {detail.pid}</div>
                                                         <div><strong>Họ tên: </strong> {detail.patientName}</div>
                                                         <div><strong>Chẩn đoán</strong> {detail.diagnosis}</div>
@@ -178,9 +171,27 @@ export default function ExpandableTable( {setShowTThuoc}) {
                                                                 Xem I3
                                                             </a>
                                                         )}
-                                                        <button className={`w-24 text-sm ${detail.accepted ? "bg-red-500 text-white" : "bg-green-500 text-white"} px-4 py-1 rounded`}>
-                                                            {detail.accepted ? "Hủy duyệt" : "Duyệt"}
-                                                        </button>
+                                                        {detail.accepted ?
+                                                            <>
+                                                            
+                                                                <button className={`w-24 text-sm  px-4 py-1 rounded bg-red-500 text-white`}>
+                                                                   Hủy duyệt
+                                                                </button>
+                                                            </>
+                                                            :
+                                                            <>
+                                                            <button className={`w-24 text-sm  px-4 py-1 rounded border bg-white border-red-600 text-red-600`}>
+                                                                   Từ chối
+                                                                </button>
+                                                                <button className={`w-24 text-sm  px-4 py-1 rounded border bg-green-600 text-white`}>
+                                                                    Duyệt
+                                                                </button>
+                                                            </>
+
+                                                        }
+
+
+
                                                     </div>
                                                 </div>
 
@@ -189,7 +200,7 @@ export default function ExpandableTable( {setShowTThuoc}) {
                                                         {detail.groups.data.map((group, idx) => (
                                                             <div key={idx} className="">
                                                                 <div className="flex gap-2 items-center">
-                                                                    {group.day > 0 && <span className="font-medium border rounded-full w-5 h-5 flex items-center justify-center">{group.day}</span>}
+                                                                    {group.day > 0 && <span className="font-medium border border-black rounded-full w-5 h-5 flex items-center justify-center">{group.day}</span>}
                                                                     <div className="font-bold underline" onClick={() => handleClickThuoc(group.name)}>{group.name}</div>
                                                                     <div>{group.desc}</div>
                                                                 </div>
@@ -201,12 +212,13 @@ export default function ExpandableTable( {setShowTThuoc}) {
                                                     {detail.pharmacy.map((item, idx) => (
                                                         <div key={idx}>
                                                             <div className="flex gap-2 items-center">
-                                                                {item.day > 0 && <span className="font-medium border rounded-full w-5 h-5 flex items-center justify-center">{item.day}</span>}
+                                                                {item.day > 0 && <span className="font-medium border border-black rounded-full w-5 h-5 flex items-center justify-center">{item.day}</span>}
 
                                                                 <div className="font-bold underline" onClick={() => handleClickThuoc}>{item.name}</div>
                                                                 <div>{item.desc}</div>
                                                                 {item.ard && <span >
-                                                                    <MdOutlineWarningAmber className=" text-red-500" />
+                                                                    <span className="text-red-500 flex items-center gap-1 border border-red-500 px-2 rounded-xl"><MdOutlineWarningAmber />adr</span>
+
                                                                 </span>
                                                                 }
                                                             </div>
