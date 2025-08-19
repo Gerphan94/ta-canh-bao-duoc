@@ -4,11 +4,9 @@ import DrugInfoModal from "./thongtinthuoc-modal";
 
 function HomePage() {
 
-    const menu = [
-        { id: 'duyet-thuoc', title: 'Duyệt thuốc', link: 'duyet-thuoc' },
-    ]
-    const currentPath = window.location.pathname.split('/').pop();
-    const [sltMenu, setSltMenu] = useState(menu[0].id);
+
+
+   
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
@@ -26,14 +24,13 @@ function HomePage() {
 
                         </div>
                         <div className="mt-20 text-left space-y-1">
-                            {menu.map((item) => (
-                                <a
-                                    key={item.id}
-                                    className={`text-lg w-full block font-semibold cursor-pointer ${currentPath === item.link ? 'bg-[#017BFB]' : ''} hover:bg-[#017BFB] px-10 py-1 rounded`}
-                                    onClick={() => setSltMenu(item.id)}
-                                    href={`${item.link}`}
-                                >{item.title}</a>
-                            ))}
+                           
+                                <button
+                                   
+                                    className={`text-lg w-full block font-semibold cursor-pointer bg-[#017BFB] hover:bg-[#017BFB] px-10 py-1 rounded`}
+                                   
+                                >{'Duyệt thuốc'}</button>
+                            
                         </div>
 
                     </div>
@@ -46,7 +43,8 @@ function HomePage() {
                                     <label className="text-sm font-medium">Từ ngày:</label>
                                     <input
                                         type="date"
-                                        defaultValue="2025-08-06"
+                                        defaultValue={startDate.toISOString().split('T')[0]}
+                                        onChange={(e) => setStartDate(new Date(e.target.value))}
                                         className="border border-gray-300 rounded px-3 py-1 text-sm"
                                     />
                                 </div>
@@ -54,7 +52,8 @@ function HomePage() {
                                     <label className="text-sm font-medium">Đến ngày:</label>
                                     <input
                                         type="date"
-                                        defaultValue="2025-08-13"
+                                        defaultValue={endDate.toISOString().split('T')[0]}
+                                        onChange={(e) => setEndDate(new Date(e.target.value))}
                                         className="border border-gray-300 rounded px-3 py-1 text-sm"
                                     />
                                 </div>

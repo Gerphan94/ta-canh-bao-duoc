@@ -23,7 +23,7 @@ function RejectModal({ setShow, mabn, onClick }) {
         <>
             <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
                 <div className="bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-y-auto px-6 py-6">
-                    <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">Xác nhận phiếu?</h2>
+                    <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">Xác nhận từ chối?</h2>
                     <div>
                         <textarea
                             ref={inputRef}

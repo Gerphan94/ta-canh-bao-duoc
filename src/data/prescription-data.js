@@ -60,3 +60,49 @@ export const UnapprovedPrescription = [
     },
 
 ]
+
+
+
+export const ApprovedPrescription = [
+    {
+        id: 1,gioylenh: '14:00',mabn: '2520019647', hoten: 'Hồ Văn Hải', chandoan: 'Viêm loét dạ dày tá tràng (K25)', i3: true, 
+        trangthai: 'Đã duyệt',
+        group: [],
+        thuoc: [
+            { id: 2, name: "Amoxicillin 500mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 1, ard: false },   // Kháng sinh
+            { id: 3, name: "Cefixime 200mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 2, ard: false },   // Kháng sinh
+            { id: 4, name: "Metformin 850mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 0, ard: true },   // Thuốc hạ đường huyết (ARD)
+        ]
+    },
+    {
+        id: 1,gioylenh: '16:00',mabn: '2520018888', hoten: 'Lê Thị Riêng', chandoan: 'Viêm loét dạ dày tá tràng (K25)', i3: true, 
+        trangthai: 'Đã duyệt',
+        group: [
+            {
+                cachpha: "Pha với Glucose 5%",
+                data: [
+                    { name: "Vancomycin 500mg", desc: "Vancomycin x 1 Lọ", day: 2, ard: false },
+                    { name: "Glucose 5% 100ml", desc: "Dung dịch truyền x 1 Chai", day: 0, ard: false }
+                ]
+            },
+        ],
+        thuoc: [
+            { id: 2, name: "Amoxicillin 500mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 1, ard: false },   // Kháng sinh
+            { id: 3, name: "Cefixime 200mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 2, ard: false },   // Kháng sinh
+            { id: 4, name: "Metformin 850mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 0, ard: true },   // Thuốc hạ đường huyết (ARD)
+        ]
+    },
+    {
+        gioylenh: '11:00',mabn: '2520013641', hoten: 'Trương Văn Phúc', chandoan: 'Sỏi thận (N20)', i3: false, trangthai: 'Đã duyệt',
+        group: [],
+        thuoc: [
+            { id: 8, name: "Clarithromycin 500mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 1, ard: false }, // Kháng sinh
+            { id: 9, name: "Vitamin C 500mg", desc: "Uống 1 viên/lần * 1 lần/ngày", day: 0, ard: false },
+            { id: 10, name: "Prednisolone 5mg", desc: "Uống 2 viên/lần * 1 lần/ngày", day: 0, ard: true }, // Corticoid (ARD)
+            { id: 11, name: "Warfarin 2mg", desc: "Uống 1 viên/lần * 1 lần/ngày", day: 0, ard: true },     // Thuốc chống đông (ARD - thêm mới)
+            { id: 12, name: "Insulin 10ml", desc: "Tiêm dưới da theo chỉ định", day: 0, ard: true }
+        ]
+
+    },
+
+]

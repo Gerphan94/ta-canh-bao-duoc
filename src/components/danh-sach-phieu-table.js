@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
 import { DanhsachPhieu } from "../data/receipt-data";
 import ToaThuocTable from "./toa-thuoc-table";
 
@@ -37,18 +36,18 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                         <>
                             <tr
                                 key={row.id}
-                                className="cursor-pointer hover:bg-gray-50 text-left"
+                                className="cursor-pointer hover:bg-gray-50 text-left border-b"
                                 onClick={() => toggleExpand(row.id)}
                             >
-                                <td className="border border-gray-300 px-2 py-1 text-center">{index + 1}</td>
-                                <td className="border border-gray-300 px-2 py-1 ">
+                                <td className="border-r border-l border-gray-300 px-2 py-1 text-center">{index + 1}</td>
+                                <td className="border-r border-gray-300 px-2 py-1 ">
                                     {row.phieu}
                                 </td>
-                                <td className="border border-gray-300 px-2 py-1">{row.khoa}</td>
-                                <td className="border border-gray-300 px-2 py-1">{row.ngay} {row.gio}</td>
-                                <td className="border border-gray-300 px-2 py-1">{row.kho}</td>
+                                <td className="border-r border-gray-300 px-2 py-1">{row.khoa}</td>
+                                <td className="border-r border-gray-300 px-2 py-1">{row.ngay} {row.gio}</td>
+                                <td className="border-r border-gray-300 px-2 py-1">{row.kho}</td>
 
-                                <td className="border border-gray-300 px-2 py-1 flex justify-center">
+                                <td className="border-r border-gray-300 px-2 py-1 flex justify-center">
                                     <span className={`${row.trangthai === 'daduyet' ? 'bg-green-100 text-green-600' : 'bg-blue-100 text-gray-600'} px-2 py-1 rounded-lg text-sm`}>
                                         {row.trangthai === 'chuaduyet' ? 'Chưa duyệt' : 'Đã duyệt'}
                                     </span>
@@ -57,7 +56,7 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
 
                             </tr>
                             {expandedRows.includes(row.id) && (
-                                <ToaThuocTable ngay={row.ngay} trangthaiphieu={row.trangthai} />
+                                <ToaThuocTable ngay={row.ngay} trangthaiphieu={row.trangthai} sltTrangThai={sltTrangThai} />
 
                             )}
                         </>

@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Patient } from "../data/patient-data";
-import { UnapprovedPrescription } from "../data/prescription-data";
+import { UnapprovedPrescription, ApprovedPrescription } from "../data/prescription-data";
 import DanhSachThuocTable from "./danh-sach-thuoc-table";
 
 import RejectModal from "./reject-modal";
-function ToaThuocTable({ ngay, trangthaiphieu }) {
+function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
+    console.log('sltTrangThai', sltTrangThai)
 
 
     const [showRejectModal, setShowRejectModal] = useState(false);
     const [sltMabn, setSltMabn] = useState('');
 
     const [data, setData] = useState(UnapprovedPrescription);
+
+    useEffect(() => {
+        if (sltTrangThai === 'chuaduyet') {
+            setData(UnapprovedPrescription);
+        } else {
+            setData(ApprovedPrescription);
+        }
+    }, [sltTrangThai]);
+
 
 
     const onClickTuChoi = (mabn) => {
