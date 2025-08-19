@@ -1,0 +1,22 @@
+export const Patient = [
+  { mabn: '2510001304', hoten: 'Nguyễn Thị Hồng', chandoan: 'Cao huyết áp (I10)', i3: true },
+  { mabn: '2520001933', hoten: 'Trần Văn Minh', chandoan: 'Đái tháo đường type 2 (E11)', i3: true  },
+  { mabn: '2410002851', hoten: 'Lê Thị Mai', chandoan: 'Viêm phổi cộng đồng (J18)' , i3: false },
+  { mabn: '2520003762', hoten: 'Phạm Văn Dũng', chandoan: 'Hen phế quản (J45)' , i3: false },
+  { mabn: '2410004390', hoten: 'Hoàng Thị Lan', chandoan: 'Thiếu máu thiếu sắt (D50)' , i3: false },
+  { mabn: '2520005231', hoten: 'Nguyễn Văn Tâm', chandoan: 'Rối loạn mỡ máu (E78)' , i3: false },
+  { mabn: '2410006025', hoten: 'Đỗ Thị Hạnh', chandoan: 'Viêm dạ dày (K29)' , i3: false },
+  { mabn: '2520007194', hoten: 'Bùi Văn Hùng', chandoan: 'Gút (M10)' , i3: false },
+  { mabn: '2410008542', hoten: 'Phan Thị Hoa', chandoan: 'Loãng xương (M81)' , i3: true },
+  { mabn: '2520009673', hoten: 'Ngô Văn Long', chandoan: 'Tai biến mạch máu não (I63)' , i3: false },
+  { mabn: '2410010386', hoten: 'Vũ Thị Ngọc', chandoan: 'Viêm khớp dạng thấp (M06)' , i3: false },
+  { mabn: '2520011420', hoten: 'Đặng Văn Sơn', chandoan: 'Suy tim (I50)' , i3: false },
+  { mabn: '2410012579', hoten: 'Nguyễn Thị Tuyết', chandoan: 'Viêm phế quản mạn (J42)' , i3: false },
+  { mabn: '2520013641', hoten: 'Trương Văn Phúc', chandoan: 'Sỏi thận (N20)' , i3: false },
+  { mabn: '2410014872', hoten: 'Lại Thị Huệ', chandoan: 'Viêm gan B mạn tính (B18)' , i3: true },
+  { mabn: '2520015908', hoten: 'Mai Văn Quân', chandoan: 'Viêm xoang mạn (J32)' , i3: false },
+  { mabn: '2410016243', hoten: 'Nguyễn Thị Kim', chandoan: 'Rối loạn lo âu (F41)' , i3: false },
+  { mabn: '2520017386', hoten: 'Tạ Văn Khánh', chandoan: 'Thoái hóa cột sống thắt lưng (M47)' , i3: false },
+  { mabn: '2410018594', hoten: 'Đinh Thị Lệ', chandoan: 'Thiếu máu hồng cầu nhỏ (D64)' , i3: false },
+  { mabn: '2520019647', hoten: 'Hồ Văn Hải', chandoan: 'Viêm loét dạ dày tá tràng (K25)' }
+]

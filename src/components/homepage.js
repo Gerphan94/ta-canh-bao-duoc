@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import ExpandableTable from "./table";
+import DanhSachPhieuTable from "./danh-sach-phieu-table";
 import DrugInfoModal from "./thongtinthuoc-modal";
 
 function HomePage() {
 
     const menu = [
         { id: 'duyet-thuoc', title: 'Duyệt thuốc', link: 'duyet-thuoc' },
-        { id: 'ky-gui-thuoc', title: 'Ký gửi thuốc', link: 'ky-gui-thuoc' },
     ]
     const currentPath = window.location.pathname.split('/').pop();
     const [sltMenu, setSltMenu] = useState(menu[0].id);
@@ -14,7 +13,7 @@ function HomePage() {
     const [endDate, setEndDate] = useState(new Date());
 
     const [showTThuoc, setShowTThuoc] = useState(false);
-    const [sltTrangThai, setSltTrangThai] = useState(-1);
+    const [sltTrangThai, setSltTrangThai] = useState('chuaduyet');
 
     return (
         <>
@@ -23,16 +22,16 @@ function HomePage() {
                     {/* Sidebar */}
                     <div className="w-56 h-screen fixed bg-[#2C43A8] text-white p-2">
                         <div className="p-4">
-                        <img src="/img/talogo.png" alt="Logo" className="w-full h-18 mx-auto" />
+                            <img src="/img/talogo.png" alt="Logo" className="w-full h-18 mx-auto" />
 
                         </div>
                         <div className="mt-20 text-left space-y-1">
                             {menu.map((item) => (
-                                <a 
-                                key={item.id} 
-                                className={`text-lg w-full block font-semibold cursor-pointer ${currentPath === item.link ? 'bg-[#017BFB]' : ''} hover:bg-[#017BFB] px-10 py-1 rounded`}
-                                onClick={() => setSltMenu(item.id)}
-                                href={`${item.link}`}
+                                <a
+                                    key={item.id}
+                                    className={`text-lg w-full block font-semibold cursor-pointer ${currentPath === item.link ? 'bg-[#017BFB]' : ''} hover:bg-[#017BFB] px-10 py-1 rounded`}
+                                    onClick={() => setSltMenu(item.id)}
+                                    href={`${item.link}`}
                                 >{item.title}</a>
                             ))}
                         </div>
@@ -59,17 +58,29 @@ function HomePage() {
                                         className="border border-gray-300 rounded px-3 py-1 text-sm"
                                     />
                                 </div>
-                                <div>
-                                    <select
-                                        className="border border-gray-300 rounded px-3 py-1 text-sm"
-                                        value={sltTrangThai}
-                                        onChange={(e) => setSltTrangThai(e.target.value)}
-                                    >
-                                        <option value={-1}>Tất cả</option>
-                                        <option value={0}>Chưa duyệt</option>
-                                        <option value={1}>Đã duyệt</option>
-                                        <option value={1}>Đã duyệt phát</option>
-                                    </select>
+                                <div className="flex gap-2 items-center">
+
+                                    <label className="cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name='status'
+                                            className="mr-2"
+                                            checked={sltTrangThai === 'chuaduyet'}
+                                            onClick={() => setSltTrangThai('chuaduyet')}
+                                        />
+                                        Chưa duyệt
+                                    </label>
+
+                                    <label className="cursor-pointer">
+                                        <input
+                                            type="radio"
+                                            name='status'
+                                            className="mr-2"
+                                            checked={sltTrangThai === 'daduyet'}
+                                            onClick={() => setSltTrangThai('daduyet')}
+                                        />
+                                        Đã duyệt
+                                    </label>
                                 </div>
                                 <button className="bg-blue-800 text-white px-6 py-2 rounded text-sm font-medium hover:bg-blue-900">
                                     Xem
@@ -77,7 +88,7 @@ function HomePage() {
                             </div>
                         </div>
 
-                        <ExpandableTable setShowTThuoc={setShowTThuoc} />
+                        <DanhSachPhieuTable setShowTThuoc={setShowTThuoc} sltTrangThai={sltTrangThai} />
 
                     </div>
                 </div>
