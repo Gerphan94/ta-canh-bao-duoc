@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { DanhsachPhieu } from "../data/receipt-data";
 import ToaThuocTable from "./toa-thuoc-table";
-
+import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
+import Pagination from "./pagination";
 
 export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
     const [expandedRows, setExpandedRows] = useState([]);
@@ -28,10 +29,10 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                         <th className="border border-gray-300 px-2 py-1">TRẠNG THÁI</th>
 
                         <th className="border border-gray-300 px-2 py-1">NGÀY DUYỆT</th>
+                        <th className="border border-gray-300 px-2 py-1 w-24"></th>
                     </tr>
                 </thead>
                 <tbody>
-                   
                     {filterData.map((row, index) => (
                         <>
                             <tr
@@ -39,30 +40,39 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                                 className="cursor-pointer hover:bg-gray-50 text-left border-b"
                                 onClick={() => toggleExpand(row.id)}
                             >
-                                <td className="border-r border-l border-gray-300 px-2 py-1 text-center">{index + 1}</td>
-                                <td className="border-r border-gray-300 px-2 py-1 ">
+                                <td className=" border-gray-300 px-2 py-1 text-center flex gap-3 items-center">
+                                    <div className="border border-gray-200 rounded-md px-1 py-1 text-blue-300">
+                                        {expandedRows.includes(row.id) ? <FaAngleDown /> : <FaAngleRight />}
+                                    </div>
+                                    <div>{index + 1}</div>
+                                </td>
+                                <td className="border-r border-l border-gray-300 px-2 py-1 ">
                                     {row.phieu}
                                 </td>
                                 <td className="border-r border-gray-300 px-2 py-1">{row.khoa}</td>
                                 <td className="border-r border-gray-300 px-2 py-1">{row.ngay} {row.gio}</td>
                                 <td className="border-r border-gray-300 px-2 py-1">{row.kho}</td>
-
-                                <td className="border-r border-gray-300 px-2 py-1 flex justify-center">
-                                    <span className={`${row.trangthai === 'daduyet' ? 'bg-green-100 text-green-600' : 'bg-blue-100 text-gray-600'} px-2 py-1 rounded-lg text-sm`}>
+                                <td className="border-r border-gray-300 px-4">
                                         {row.trangthai === 'chuaduyet' ? 'Chưa duyệt' : 'Đã duyệt'}
-                                    </span>
+                                   
                                 </td>
-                                <td className="border border-gray-300 px-2 py-1">{row.ngayduyet}</td>
-
+                                <td className="border-r border-gray-300 px-2 py-1">{row.ngayduyet}</td>
+                                <td className="px-2 py-1">
+                                    {row.trangthai === 'chuaduyet' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm">Xác nhận</button>}
+                                </td>
                             </tr>
                             {expandedRows.includes(row.id) && (
                                 <ToaThuocTable ngay={row.ngay} trangthaiphieu={row.trangthai} sltTrangThai={sltTrangThai} />
-
                             )}
                         </>
                     ))}
                 </tbody>
             </table>
+            <Pagination
+                    currentPage={1}
+                   
+                    totalPage={1}
+                />
         </div>
     );
 }
