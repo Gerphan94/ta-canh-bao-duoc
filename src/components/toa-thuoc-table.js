@@ -74,9 +74,9 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                                             </>
 
                                         }
-                                        {detail.trangthai === 'Từ chối' &&
+                                        {/* {detail.trangthai === 'Từ chối' &&
                                             <button className=" bg-blue-500 text-white rounded px-2 py-0.5" onClick={() => handleDuyet(detail.mabn, 'Chưa duyệt')} >Duyệt lại</button>
-                                        }
+                                        } */}
 
                                     </div>
                                 </div>

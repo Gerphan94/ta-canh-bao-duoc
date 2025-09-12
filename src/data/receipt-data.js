@@ -18,7 +18,8 @@ export const DanhsachPhieu =[
   { id: 6, phieu: "Phiếu lĩnh thuốc lần 1", khoa: "Khoa Ngoại", ngay: "16/08/2025", gio: "13:15", trangthai: "daduyet", kho: "Kho Dược nội trú C", ngayduyet: "16/08/2025 18:00" },
   { id: 5, phieu: "Phiếu lĩnh thuốc lần 1", khoa: "Khoa Nội tiết", ngay: "16/08/2025", gio: "11:50", trangthai: "daduyet", kho: "Kho Dược nội trú C", ngayduyet: "16/08/2025 18:00" },
   { id: 4, phieu: "Phiếu lĩnh thuốc lần 1", khoa: "Khoa Sản", ngay: "16/08/2025", gio: "10:10", trangthai: "daduyet", kho: "Kho Dược nội trú C", ngayduyet: "16/08/2025 18:00" },
-  { id: 3, phieu: "Phiếu lĩnh thuốc lần 2", khoa: "Kho Thuốc hồi tĩnh", ngay: "16/08/2025", gio: "09:30", trangthai: "daduyet", kho: "Kho Dược nội trú C", ngayduyet: "16/08/2025 18:00" },
-  { id: 2, phieu: "Phiếu lĩnh thuốc lần 2", khoa: "Khoa Nội tổng hợp", ngay: "16/08/2025", gio: "08:55", trangthai: "daduyet", kho: "Kho Dược nội trú C", ngayduyet: "16/08/2025 18:00" },
-  { id: 1, phieu: "Phiếu lĩnh thuốc lần 1", khoa: "Khoa Hồi sức", ngay: "16/08/2025", gio: "08:23", trangthai: "daduyet", kho: "Kho Dược nội trú C", ngayduyet: "16/08/2025 18:00" }
+  
+  { id: 3, phieu: "Phiếu lĩnh thuốc lần 2", khoa: "Kho Thuốc hồi tĩnh", ngay: "16/08/2025", gio: "09:30", trangthai: "tuchoi", kho: "Kho Dược nội trú C", ngayduyet: "16/08/2025 18:00" },
+  { id: 2, phieu: "Phiếu lĩnh thuốc lần 2", khoa: "Khoa Nội tổng hợp", ngay: "16/08/2025", gio: "08:55", trangthai: "tuchoi", kho: "Kho Dược nội trú C", ngayduyet: "16/08/2025 18:00" },
+  { id: 1, phieu: "Phiếu lĩnh thuốc lần 1", khoa: "Khoa Hồi sức", ngay: "16/08/2025", gio: "08:23", trangthai: "tuchoi", kho: "Kho Dược nội trú C", ngayduyet: "16/08/2025 18:00" }
 ]

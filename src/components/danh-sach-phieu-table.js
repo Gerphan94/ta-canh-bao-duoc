@@ -53,7 +53,7 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                                 <td className="border-r border-gray-300 px-2 py-1">{row.ngay} {row.gio}</td>
                                 <td className="border-r border-gray-300 px-2 py-1">{row.kho}</td>
                                 <td className="border-r border-gray-300 px-4">
-                                        {row.trangthai === 'chuaduyet' ? 'Chưa duyệt' : 'Đã duyệt'}
+                                        {row.trangthai === 'chuaduyet' ? 'Chưa duyệt' : row.trangthai === 'daduyet' ? 'Đã duyệt' :"Từ Chối"}
                                    
                                 </td>
                                 <td className="border-r border-gray-300 px-2 py-1">{row.ngayduyet}</td>
