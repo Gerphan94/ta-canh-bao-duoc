@@ -73,14 +73,17 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                                                         "Từ Chối"}
                                     </div>
                                 </td>
-                                <td className="border-r border-gray-300 px-2 py-1">{row.ngayduyet}</td>
+                                <td className="border-r border-gray-300 px-2 py-1">{(row.trangthai === 'dongy' || row.trangthai === 'tuchoi') && row.ngayduyet }</td>
                                 <td className="px-2 py-1">
-                                    <div>
+                                    <div >
                                         {row.trangthai === 'chuaduyet' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowConfirmModal(true)}>Xác nhận</button>}
                                         {row.trangthai === 'dangduyet' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowConfirmModal(true)}>Xác nhận</button>}
                                         {row.trangthai === 'duyetlai' &&
                                             <div className="flex gap-2 items-center">
                                                 <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowConfirmModal(true)}>Xác nhận</button>
+                                                
+                                                <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" >Lịch sử</button>
+
                                             </div>
                                         }
                                         {row.trangthai === 'tuchoi' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowConfirmModal(true)}>Mở khóa</button>}
