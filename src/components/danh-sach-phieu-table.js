@@ -3,12 +3,13 @@ import { DanhsachPhieu } from "../data/receipt-data";
 import ToaThuocTable from "./toa-thuoc-table";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
 import ConfirmPhieuModal from "./confirm-phieu-modal";
-
+import LichSuDuyetModal from "./lich-su-duyet-modal";
 import Pagination from "./pagination";
 
 export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
     const [expandedRows, setExpandedRows] = useState([]);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [showLSDuyetModal, setShowLSDuyetModal] = useState(false);
 
 
     const filterData = DanhsachPhieu.filter((item) => {
@@ -82,7 +83,7 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                                             <div className="flex gap-2 items-center">
                                                 <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowConfirmModal(true)}>Xác nhận</button>
                                                 
-                                                <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" >Lịch sử</button>
+                                                <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowLSDuyetModal(true)} >Lịch sử</button>
 
                                             </div>
                                         }
@@ -103,6 +104,7 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                 totalPage={1}
             />
             {showConfirmModal && <ConfirmPhieuModal setShow={setShowConfirmModal} />}
+            {showLSDuyetModal && <LichSuDuyetModal setShow={setShowLSDuyetModal} />}
         </div>
     );
 }

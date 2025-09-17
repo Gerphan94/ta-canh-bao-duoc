@@ -28,8 +28,8 @@ export default function DrugInfoModal({ show, setShow }) {
     return (
         <>
 
-            <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-                <div className="bg-white w-[800px] rounded-md shadow-lg border border-gray-300">
+            <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 ">
+                <div className="bg-white w-[800px] h-5/6 rounded-md shadow-lg border border-gray-300 flex flex-col">
                     {/* Header */}
                     <div className="bg-gray-100 px-4 py-2 border-b flex justify-between items-center">
                         <h2 className="font-semibold text-gray-800">Thông tin dược lâm sàng</h2>
