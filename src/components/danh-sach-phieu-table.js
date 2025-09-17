@@ -41,7 +41,7 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                         <th className="border border-gray-300 px-2 py-1">TRẠNG THÁI</th>
 
                         <th className="border border-gray-300 px-2 py-1">NGÀY DUYỆT</th>
-                        <th className="border border-gray-300 px-2 py-1 w-28"></th>
+                        <th className="border border-gray-300 px-2 py-1 w-40"></th>
                     </tr>
                 </thead>
                 <tbody>
