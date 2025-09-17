@@ -47,7 +47,7 @@ export const UnapprovedPrescription = [
         ]
     },
     {
-        gioylenh: '11:00',mabn: '2520013641', hoten: 'Trương Văn Phúc', chandoan: 'Sỏi thận (N20)', i3: false, trangthai: 'Đã duyệt',
+        gioylenh: '11:00',mabn: '2520013641', hoten: 'Trương Văn Phúc', chandoan: 'Sỏi thận (N20)', i3: false, trangthai: 'Đồng ý',
         group: [],
         thuoc: [
             { id: 8, name: "Clarithromycin 500mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 1, ard: false }, // Kháng sinh
@@ -66,7 +66,7 @@ export const UnapprovedPrescription = [
 export const ApprovedPrescription = [
     {
         id: 1,gioylenh: '14:00',mabn: '2520019647', hoten: 'Hồ Văn Hải', chandoan: 'Viêm loét dạ dày tá tràng (K25)', i3: true, 
-        trangthai: 'Đã duyệt',
+        trangthai: 'Đồng ý',
         group: [],
         thuoc: [
             { id: 2, name: "Amoxicillin 500mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 1, ard: false },   // Kháng sinh
@@ -76,7 +76,7 @@ export const ApprovedPrescription = [
     },
     {
         id: 1,gioylenh: '16:00',mabn: '2520018888', hoten: 'Lê Thị Riêng', chandoan: 'Viêm loét dạ dày tá tràng (K25)', i3: true, 
-        trangthai: 'Đã duyệt',
+        trangthai: 'Đồng ý',
         group: [
             {
                 cachpha: "Pha với Glucose 5%",
@@ -93,7 +93,7 @@ export const ApprovedPrescription = [
         ]
     },
     {
-        gioylenh: '11:00',mabn: '2520013641', hoten: 'Trương Văn Phúc', chandoan: 'Sỏi thận (N20)', i3: false, trangthai: 'Đã duyệt',
+        gioylenh: '11:00',mabn: '2520013641', hoten: 'Trương Văn Phúc', chandoan: 'Sỏi thận (N20)', i3: false, trangthai: 'Đồng ý',
         group: [],
         thuoc: [
             { id: 8, name: "Clarithromycin 500mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 1, ard: false }, // Kháng sinh

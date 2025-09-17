@@ -15,8 +15,10 @@ function HomePage() {
 
     const trangthais = [
         { id: "chuaduyet", name: "Chưa Duyệt" },
+        { id: "dangduyet", name: "Đang Duyệt" },
         { id: "daduyet", name: "Đã Duyệt" },
-        { id: "tuchoi", name: "Từ chối" },
+        // { id: "dongy", name: "Đồng ý" },
+        // { id: "tuchoi", name: "Từ chối" },
     ]
 
     return (
@@ -30,12 +32,10 @@ function HomePage() {
 
                         </div>
                         <div className="mt-20 text-left space-y-1">
-
-                            <button
-
-                                className={`text-lg w-full block font-semibold cursor-pointer bg-[#017BFB] hover:bg-[#017BFB] px-10 py-1 rounded`}
-
-                            >{'Duyệt thuốc'}</button>
+                            <button className={`text-lg w-full block font-semibold cursor-pointer bg-[#017BFB] hover:bg-[#017BFB] px-10 py-1 rounded`}
+                            >
+                                {'Duyệt thuốc'}
+                            </button>
 
                         </div>
 
@@ -78,7 +78,7 @@ function HomePage() {
                                     ))}
 
 
-                                    
+
                                 </div>
                                 <button className="bg-blue-800 text-white px-6 py-2 rounded text-sm font-medium hover:bg-blue-900">
                                     Xem

@@ -2,13 +2,25 @@ import { useState } from "react";
 import { DanhsachPhieu } from "../data/receipt-data";
 import ToaThuocTable from "./toa-thuoc-table";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
+import ConfirmPhieuModal from "./confirm-phieu-modal";
+
 import Pagination from "./pagination";
 
 export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
     const [expandedRows, setExpandedRows] = useState([]);
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
 
 
-    const filterData = DanhsachPhieu.filter((item) => item.trangthai === sltTrangThai);
+    const filterData = DanhsachPhieu.filter((item) => {
+        if (sltTrangThai === "dangduyet") {
+            return item.trangthai === "dangduyet" || item.trangthai === "duyetlai";
+        }
+        else if (sltTrangThai === "daduyet") {
+            return item.trangthai === "dongy" || item.trangthai === "tuchoi";
+        } else {
+            return item.trangthai === sltTrangThai;
+        }
+    });
 
     const toggleExpand = (id) => {
         setExpandedRows((prev) =>
@@ -29,7 +41,7 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                         <th className="border border-gray-300 px-2 py-1">TRẠNG THÁI</th>
 
                         <th className="border border-gray-300 px-2 py-1">NGÀY DUYỆT</th>
-                        <th className="border border-gray-300 px-2 py-1 w-24"></th>
+                        <th className="border border-gray-300 px-2 py-1 w-28"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,12 +65,27 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                                 <td className="border-r border-gray-300 px-2 py-1">{row.ngay} {row.gio}</td>
                                 <td className="border-r border-gray-300 px-2 py-1">{row.kho}</td>
                                 <td className="border-r border-gray-300 px-4">
-                                        {row.trangthai === 'chuaduyet' ? 'Chưa duyệt' : row.trangthai === 'daduyet' ? 'Đã duyệt' :"Từ Chối"}
-                                   
+                                    <div className={`${row.trangthai === 'chuaduyet' ? 'text-gray-800' : row.trangthai === 'dangduyet' ? 'text-blue-500' : row.trangthai === 'dongy' ? 'text-green-500' : "text-red-500"}  rounded-md px-2 py-1}`}>
+                                        {row.trangthai === 'chuaduyet' ? 'Chưa duyệt' :
+                                            row.trangthai === 'duyetlai' ? 'Duyệt lại' :
+                                                row.trangthai === 'dangduyet' ? 'Đang duyệt' :
+                                                    row.trangthai === 'dongy' ? 'Đồng ý' :
+                                                        "Từ Chối"}
+                                    </div>
                                 </td>
                                 <td className="border-r border-gray-300 px-2 py-1">{row.ngayduyet}</td>
                                 <td className="px-2 py-1">
-                                    {row.trangthai === 'chuaduyet' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm">Xác nhận</button>}
+                                    <div>
+                                        {row.trangthai === 'chuaduyet' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowConfirmModal(true)}>Xác nhận</button>}
+                                        {row.trangthai === 'dangduyet' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowConfirmModal(true)}>Xác nhận</button>}
+                                        {row.trangthai === 'duyetlai' &&
+                                            <div className="flex gap-2 items-center">
+                                                <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowConfirmModal(true)}>Xác nhận</button>
+                                            </div>
+                                        }
+                                        {row.trangthai === 'tuchoi' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowConfirmModal(true)}>Mở khóa</button>}
+                                        {row.trangthai === 'dongy' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowConfirmModal(true)}>Mở khóa</button>}
+                                    </div>
                                 </td>
                             </tr>
                             {expandedRows.includes(row.id) && (
@@ -69,10 +96,10 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                 </tbody>
             </table>
             <Pagination
-                    currentPage={1}
-                   
-                    totalPage={1}
-                />
+                currentPage={1}
+                totalPage={1}
+            />
+            {showConfirmModal && <ConfirmPhieuModal setShow={setShowConfirmModal} />}
         </div>
     );
 }

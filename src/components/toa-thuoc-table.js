@@ -3,18 +3,19 @@ import { Patient } from "../data/patient-data";
 import { UnapprovedPrescription, ApprovedPrescription } from "../data/prescription-data";
 import DanhSachThuocTable from "./danh-sach-thuoc-table";
 
-import RejectModal from "./reject-modal";
+import ConfirmModal from "./confirm-modal";
 function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
     console.log('sltTrangThai', sltTrangThai)
 
 
-    const [showRejectModal, setShowRejectModal] = useState(false);
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [confirmType, setConfirmType] = useState('');
     const [sltMabn, setSltMabn] = useState('');
 
     const [data, setData] = useState(UnapprovedPrescription);
 
     useEffect(() => {
-        if (sltTrangThai === 'chuaduyet') {
+        if (sltTrangThai === 'chuaduyet' || sltTrangThai === 'dangduyet') {
             setData(UnapprovedPrescription);
         } else {
             setData(ApprovedPrescription);
@@ -23,9 +24,10 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
 
 
 
-    const onClickTuChoi = (mabn) => {
-        setShowRejectModal(true);
+    const handleClick = (mabn, type) => {
+        setShowConfirmModal(true);
         setSltMabn(mabn);
+        setConfirmType(type);
     };
 
     const handleDuyet = (mabn, trangthai) => {
@@ -64,20 +66,19 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                                 </div>
                                 <div className="flex gap-4 items-center">
                                     <div className="italic">
-                                        <div className={`${detail.trangthai === 'Đã duyệt' ? 'text-blue-700' : detail.trangthai === 'Từ chối' ? 'text-red-700' : 'text-gray-700'}`}>{detail.trangthai}</div>
+                                        <div className={`${detail.trangthai === 'Đồng ý' ? 'text-blue-700' : detail.trangthai === 'Từ chối' ? 'text-red-700' : 'text-gray-700'}`}>{detail.trangthai}</div>
                                     </div>
                                     <div className="flex gap-2 items-center">
-                                        {detail.trangthai === 'Chưa duyệt' &&
+                                        {detail.trangthai === 'Chưa duyệt' || detail.trangthai === 'Đang duyệt' ?
                                             <>
-                                                <button className="  bg-red-500 text-white rounded px-2 py-0.5" onClick={() => onClickTuChoi(detail.mabn)} >Từ chối</button>
-                                                <button className=" bg-blue-500 text-white rounded px-2 py-0.5" onClick={() => handleDuyet(detail.mabn, 'Đã duyệt')} >Duyệt</button>
+                                                <button className="  bg-red-500 text-white rounded px-2 py-0.5" onClick={() => handleClick(detail.mabn, 'tuchoi')} >Từ chối</button>
+                                                <button className=" bg-blue-500 text-white rounded px-2 py-0.5" onClick={() => handleClick(detail.mabn, 'dongy')} >Đồng ý</button>
+                                                {trangthaiphieu === 'duyetlai' && <button className=" bg-blue-500 text-white rounded px-2 py-0.5" onClick={() => handleClick(detail.mabn, 'dongy')} >Lịch sử</button>
+                                                }
                                             </>
-
-                                        }
-                                        {/* {detail.trangthai === 'Từ chối' &&
+                                            :
                                             <button className=" bg-blue-500 text-white rounded px-2 py-0.5" onClick={() => handleDuyet(detail.mabn, 'Chưa duyệt')} >Duyệt lại</button>
-                                        } */}
-
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -86,11 +87,13 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                     ))}
                 </td>
             </tr>
-            {showRejectModal &&
-                <RejectModal
-                    setShow={setShowRejectModal}
+            {showConfirmModal &&
+                <ConfirmModal
+                    setShow={setShowConfirmModal}
                     mabn={sltMabn}
-                    onClick={handleDuyet} />}
+                    onClick={handleDuyet}
+                    confirmType={confirmType}
+                />}
         </>
     );
 }
