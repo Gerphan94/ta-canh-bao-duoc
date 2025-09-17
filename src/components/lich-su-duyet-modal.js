@@ -13,7 +13,7 @@ export default function LichSuDuyetModal({ setShow }) {
             chandoan: 'Cao huyết áp (I10)',
             i3: true,
             trangthai: 'Đồng ý',
-             ghichu :'Đồng ý với y lệnh bác sĩ',
+            ghichu: 'Đồng ý với y lệnh bác sĩ',
             group: [
                 {
                     cachpha: "Pha với nước cất",
@@ -38,7 +38,7 @@ export default function LichSuDuyetModal({ setShow }) {
             chandoan: 'Loãng xương (M81)',
             i3: true,
             trangthai: 'Từ chối',
-            ghichu :'Toa thuốc không hợp lệ',
+            ghichu: 'Toa thuốc không hợp lệ',
             group: [
                 {
                     cachpha: "Pha với Glucose 5%",
@@ -56,7 +56,7 @@ export default function LichSuDuyetModal({ setShow }) {
         },
         {
             gioylenh: '11:00', mabn: '2520013641', hoten: 'Trương Văn Phúc', chandoan: 'Sỏi thận (N20)', i3: false, trangthai: 'Đồng ý',
-           ghichu :'Đồng ý với y lệnh bác sĩ',
+            ghichu: 'Đồng ý với y lệnh bác sĩ',
             group: [],
             thuoc: [
                 { id: 8, name: "Clarithromycin 500mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 1, ard: false }, // Kháng sinh
@@ -69,8 +69,6 @@ export default function LichSuDuyetModal({ setShow }) {
         },
 
     ]
-
-
     return (
         <>
 
@@ -120,12 +118,15 @@ export default function LichSuDuyetModal({ setShow }) {
                                         <div>
                                             <DanhSachThuocTable group={detail.group} thuoc={detail.thuoc} />
                                         </div>
-                                        <div className="p-2">
-                                            <label className="block">Ghi chú:</label>
-                                            <textarea
-                                                className="border rounded-md outline-none p-2 w-full"
-                                                readOnly value={detail.ghichu} />
-                                        </div>
+                                        {detail.trangthai === 'Từ chối' && (
+                                            <div className="p-2 space-y-1">
+                                                <label className="block text-red-500">Lý do từ chối:</label>
+                                                <textarea
+                                                    className="border rounded-md outline-none p-2 w-full"
+                                                    readOnly value={detail.ghichu} />
+                                            </div>
+                                        )}
+
                                     </div>
                                 ))}
                             </div>

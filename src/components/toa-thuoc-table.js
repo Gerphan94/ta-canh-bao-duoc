@@ -72,7 +72,7 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                                         {detail.trangthai === 'Chưa duyệt' || detail.trangthai === 'Đang duyệt' ?
                                             <>
                                                 <button className="  bg-red-500 text-white rounded px-2 py-0.5" onClick={() => handleClick(detail.mabn, 'tuchoi')} >Từ chối</button>
-                                                <button className=" bg-blue-500 text-white rounded px-2 py-0.5" onClick={() => handleClick(detail.mabn, 'dongy')} >Đồng ý</button>
+                                                <button className=" bg-blue-500 text-white rounded px-2 py-0.5" onClick={() => handleDuyet(detail.mabn, 'Đồng ý')} >Đồng ý</button>
                                                 {/* {trangthaiphieu === 'duyetlai' &&
                                                     <button
                                                         className=" bg-blue-500 text-white rounded px-2 py-0.5"
