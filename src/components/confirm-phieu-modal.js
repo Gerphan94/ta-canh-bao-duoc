@@ -12,7 +12,16 @@ function ConfirmPhieuModal({ setShow, r}) {
                     <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">{r === 0 ? 'Xác nhận đồng ý phiếu' : r === 1 ? 'Xác nhận từ chối phiếu' : 'Chưa hoàn thành duyệt toa trong phiếu, không thể xác nhận'}</h2>
                     {r !== 2 &&
                         <div>
-                            <textarea
+                            <input
+                                spellCheck="false"
+                                autoComplete="off"
+                                type="text"
+                                className="w-full border border-gray-300 rounded-md p-2 outline-none"
+                                placeholder="Ghi chú"
+                                value={ghichu}
+                                onChange={(e) => setGhichu(e.target.value)}
+                            />
+                            {/* <textarea
                                 rows={4}
                                 className="w-full border border-gray-300 rounded-md p-2 outline-none"
                                 placeholder="Ghi chú"
@@ -20,7 +29,7 @@ function ConfirmPhieuModal({ setShow, r}) {
                                 onChange={(e) => setGhichu(e.target.value)}
 
 
-                            />
+                            /> */}
                         </div>
                     }
                     <div className="flex justify-center gap-4 pt-4 text-sm">

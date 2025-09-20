@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DanhsachPhieu } from "../data/receipt-data";
-import ToaThuocTable from "./toa-thuoc-table";
+import ToaThuocTable from "./toa-thuoc-tablev2";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
 import ConfirmPhieuModal from "./confirm-phieu-modal";
 import LichSuDuyetModal from "./lich-su-duyet-modal";
 import ConfirmMokhoa from "./comfirm-mokhoa";
 import Pagination from "./pagination";
+import { FaCheck , FaHistory, FaUnlockAlt  } from "react-icons/fa";
 
 export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
     const [expandedRows, setExpandedRows] = useState([]);
@@ -25,7 +26,11 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
         }
     });
 
-    
+    useEffect(() => {
+        setExpandedRows([]); // Reset expanded rows when the filter changes
+    }, [sltTrangThai]);
+
+
 
     const toggleExpand = (id) => {
         setExpandedRows((prev) =>
@@ -38,13 +43,11 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
         setR(Math.floor(Math.random() * 3));
     }
 
-    const handleLSDuyet = (mabn) => {
-        setShowLSDuyetModal(true);
-        setR(mabn);
-    }
+
+
     return (
-        <div className="p-4">
-            <table className="w-full border-collapse border border-gray-300">
+        <div className="p-4 overflow-x-auto w-full">
+            <table className=" border-collapse border border-gray-300 w-full">
                 <thead className="bg-gray-100">
                     <tr>
                         <th className="border border-gray-300 px-2 py-1">STT</th>
@@ -55,7 +58,8 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                         <th className="border border-gray-300 px-2 py-1">TRẠNG THÁI</th>
 
                         <th className="border border-gray-300 px-2 py-1">NGÀY DUYỆT</th>
-                        <th className="border border-gray-300 px-2 py-1 w-40"></th>
+                        <th className="border border-gray-300 px-2 py-1">Ghi chú</th>
+                        <th className="border border-gray-300 px-2 py-1 w-20 sticky right-0"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,11 +67,15 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                         <>
                             <tr
                                 key={row.id}
-                                className="cursor-pointer hover:bg-gray-50 text-left border-b"
-                                onClick={() => toggleExpand(row.id)}
+                                className={`cursor-pointer hover:bg-gray-50 text-left border-b truncate select-none ${row.trangthai === 'duyetlai' && 'text-red-400'}`}
+                               
                             >
                                 <td className=" border-gray-300 px-2 py-1 text-center flex gap-3 items-center">
-                                    <div className="border border-gray-200 rounded-md px-1 py-1 text-blue-300">
+                                    <div 
+                                    className="border border-gray-200 rounded-md px-1 py-1 text-blue-300"
+                                     onClick={() => toggleExpand(row.id)}
+                                    
+                                    >
                                         {expandedRows.includes(row.id) ? <FaAngleDown /> : <FaAngleRight />}
                                     </div>
                                     <div>{index + 1}</div>
@@ -87,21 +95,32 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                                                         "Từ Chối"}
                                     </div>
                                 </td>
-                                <td className="border-r border-gray-300 px-2 py-1">{(row.trangthai === 'dongy' || row.trangthai === 'tuchoi') && row.ngayduyet }</td>
+                                <td className="border-r border-gray-300 px-2 py-1">{(row.trangthai === 'dongy' || row.trangthai === 'tuchoi') && row.ngayduyet}</td>
+                                <td className="border-r border-gray-300 px-2 py-1">{row.ghichu}</td>
                                 <td className="px-2 py-1">
-                                    <div >
-                                        {row.trangthai === 'chuaduyet' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => handleConfirm()}>Xác nhận</button>}
-                                        {row.trangthai === 'dangduyet' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowConfirmModal()}>Xác nhận</button>}
+                                    <div className="flex gap-2">
+                                        {(row.trangthai === 'chuaduyet' || row.trangthai === 'dangduyet' || row.trangthai === 'duyetlai') &&
+                                            <button
+                                                className="bg-blue-400 hover:bg-[#017BFB] text-white p-1.5 rounded text-sm "
+                                                onClick={() => handleConfirm()}
+                                            >
+                                                <FaCheck className="size-4" />
+                                            </button>}
                                         {row.trangthai === 'duyetlai' &&
                                             <div className="flex gap-2 items-center">
-                                                <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => handleConfirm()}>Xác nhận</button>
-                                                
-                                                <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowLSDuyetModal(true)} >Lịch sử</button>
+
+                                                <button 
+                                                className="bg-blue-400 hover:bg-[#017BFB] text-white p-1.5 rounded text-sm" 
+                                                onClick={() => setShowLSDuyetModal(true)} >
+                                                    <FaHistory className="size-4" />
+                                                    </button>
 
                                             </div>
                                         }
-                                        {row.trangthai === 'tuchoi' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowMokhoaModal(true)}>Mở khóa</button>}
-                                        {row.trangthai === 'dongy' && <button className="bg-blue-400 hover:bg-[#017BFB] text-white px-2 py-0.5 rounded text-sm" onClick={() => setShowMokhoaModal(true)}>Mở khóa</button>}
+                                        {(row.trangthai === 'tuchoi' || row.trangthai === 'dongy' || row.trangthai === 'dangduyet') &&
+                                            <button className="bg-blue-400 hover:bg-[#017BFB] text-white p-1.5 rounded text-sm" onClick={() => setShowMokhoaModal(true)}>
+                                                <FaUnlockAlt  className="size-4" />
+                                                </button>}
                                     </div>
                                 </td>
                             </tr>

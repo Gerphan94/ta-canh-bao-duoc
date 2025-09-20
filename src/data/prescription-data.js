@@ -4,7 +4,9 @@ export const UnapprovedPrescription = [
         gioylenh: '14:00',
         mabn: '2510001304',
         hoten: 'Nguyễn Thị Hồng',
-        chandoan: 'Cao huyết áp (I10)',
+        gioitinh: 'Nữ',
+        ngaysinh: '01/01/2000',
+        chandoan: 'Cao huyết áp (I10); Đái tháo đường týp 2 (E11); Rối loạn mỡ máu (E78.5); Béo phì (E66.9); Bệnh mạch vành (I25.1); Hen phế quản (J45.9); Viêm dạ dày mạn (K29.5); Trào ngược dạ dày-thực quản (K21.9); Bệnh thận mạn (N18.9); Thiếu máu không xác định (D64.9)',
         i3: true,
         trangthai: 'Chưa duyệt',
         group: [
@@ -28,6 +30,8 @@ export const UnapprovedPrescription = [
         gioylenh: '12:00',
         mabn: '2410008542',
         hoten: 'Phan Thị Hoa',
+        gioitinh: 'Nữ',
+        ngaysinh: '16/11/1980',
         chandoan: 'Loãng xương (M81)',
         i3: true,
         trangthai: 'Chưa duyệt',
@@ -47,7 +51,14 @@ export const UnapprovedPrescription = [
         ]
     },
     {
-        gioylenh: '11:00',mabn: '2520013641', hoten: 'Trương Văn Phúc', chandoan: 'Sỏi thận (N20)', i3: false, trangthai: 'Đồng ý',
+        gioylenh: '11:00',
+        mabn: '2520013641', 
+        hoten: 'Trương Văn Phúc', 
+        gioitinh: 'Nam',
+        ngaysinh: '16/11/2002',
+        chandoan: 'Sỏi thận (N20)', 
+        i3: false, 
+        trangthai: 'Đồng ý',
         group: [],
         thuoc: [
             { id: 8, name: "Clarithromycin 500mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 1, ard: false }, // Kháng sinh
@@ -65,7 +76,13 @@ export const UnapprovedPrescription = [
 
 export const ApprovedPrescription = [
     {
-        id: 1,gioylenh: '14:00',mabn: '2520019647', hoten: 'Hồ Văn Hải', chandoan: 'Viêm loét dạ dày tá tràng (K25)', i3: true, 
+        id: 1,gioylenh: '14:00',
+        mabn: '2520019647', 
+        hoten: 'Hồ Văn Hải', 
+        gioitinh: 'Nam',
+        ngaysinh: '16/11/2012',
+        chandoan: 'Viêm loét dạ dày tá tràng (K25)', 
+        i3: true, 
         trangthai: 'Đồng ý',
         group: [],
         thuoc: [
@@ -75,7 +92,14 @@ export const ApprovedPrescription = [
         ]
     },
     {
-        id: 1,gioylenh: '16:00',mabn: '2520018888', hoten: 'Lê Thị Riêng', chandoan: 'Viêm loét dạ dày tá tràng (K25)', i3: true, 
+        id: 1,
+        gioylenh: '16:00',
+        mabn: '2520018888', 
+        hoten: 'Lê Thị Riêng', 
+        gioitinh: 'Nữ',
+        ngaysinh: '16/05/1970',
+        chandoan: 'Viêm loét dạ dày tá tràng (K25)', 
+        i3: true, 
         trangthai: 'Đồng ý',
         group: [
             {
@@ -93,7 +117,14 @@ export const ApprovedPrescription = [
         ]
     },
     {
-        gioylenh: '11:00',mabn: '2520013641', hoten: 'Trương Văn Phúc', chandoan: 'Sỏi thận (N20)', i3: false, trangthai: 'Đồng ý',
+        gioylenh: '11:00',
+        mabn: '2520013641', 
+        hoten: 'Trương Văn Phúc', 
+        gioitinh: 'Nam',
+        ngaysinh: '16/12/1997',
+        chandoan: 'Sỏi thận (N20)', 
+        i3: false,
+         trangthai: 'Đồng ý',
         group: [],
         thuoc: [
             { id: 8, name: "Clarithromycin 500mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 1, ard: false }, // Kháng sinh

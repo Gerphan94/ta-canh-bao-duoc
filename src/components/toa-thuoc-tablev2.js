@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Patient } from "../data/patient-data";
 import { UnapprovedPrescription, ApprovedPrescription } from "../data/prescription-data";
 import DanhSachThuocTable from "./danh-sach-thuoc-table";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 import ConfirmModal from "./confirm-modal";
 function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
@@ -49,14 +50,12 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                         <div key={detail.id} className="mb-2 text-left border rounded-xl">
                             <div className="flex justify-between bg-gray-300 p-2 rounded-t-lg">
                                 <div className=" flex gap-2 items-center ">
-                                    <div className="flex gap-2 items-center"><div className="font-semibold">Ngày y lệnh:</div> {ngay} {detail.gioylenh}</div>
                                     <div className="flex gap-2 items-center"><div className="font-semibold">Mã BN:</div> {detail.mabn}</div>
                                     <div className="flex gap-2 items-center"><div className="font-semibold">Họ tên: </div> {detail.hoten}</div>
+                                    <div className="flex gap-2 items-center"><div className="font-semibold">Ngày sinh: </div> {detail.ngaysinh}</div>
                                     <div className="flex gap-2 items-center"><div className="font-semibold">Giới tính: </div> {detail.gioitinh}</div>
 
-                                    <div className="flex gap-2 items-center"><div className="font-semibold">Ngày sinh: </div> {detail.ngaysinh}</div>
-
-                                    {detail.i3 && (
+                                    {/* {detail.i3 && (
                                         <a
                                             className="inline-block border px-2 py-1 rounded-md bg-blue-700 text-white "
                                             href="http://172.20.9.22/preview/10dc653d-7abd-4648-a24a-726bbf513dc3"
@@ -65,7 +64,7 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                                         >
                                             Xem I3
                                         </a>
-                                    )}
+                                    )} */}
                                 </div>
                                 <div className="flex gap-4 items-center">
                                     <div className="italic">
@@ -76,13 +75,7 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                                             <>
                                                 <button className="  bg-red-500 text-white rounded px-2 py-0.5" onClick={() => handleClick(detail.mabn, 'tuchoi')} >Từ chối</button>
                                                 <button className=" bg-blue-500 text-white rounded px-2 py-0.5" onClick={() => handleDuyet(detail.mabn, 'Đồng ý')} >Đồng ý</button>
-                                                {/* {trangthaiphieu === 'duyetlai' &&
-                                                    <button
-                                                        className=" bg-blue-500 text-white rounded px-2 py-0.5"
-                                                        onClick={() => handleClick(detail.mabn, 'dongy')} >
-                                                        Lịch sử
-                                                    </button>
-                                                } */}
+
                                             </>
                                             :
                                             <button className=" bg-blue-500 text-white rounded px-2 py-0.5" onClick={() => handleDuyet(detail.mabn, 'Chưa duyệt')} >Duyệt lại</button>
@@ -90,12 +83,35 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                                     </div>
                                 </div>
                             </div>
-                            <div >
-                                <div className="flex gap-2 items-center p-2">
-                                    <div className="bg-[#FDF7E4] p-2 rounded-md "><strong>Chẩn đoán: </strong>{detail.chandoan}</div>
+                            <div className="flex">
+                                <div className="w-1/3 p-4 border-r">
+                                    <div className="flex gap-2 items-center"><div className="font-semibold">Ngày y lệnh:</div> {ngay} {detail.gioylenh}</div>
+
+                                    <div className=" rounded-md font-medium ">Chẩn đoán:</div>
+                                    <div className="">
+                                        {detail.chandoan.split(';').map((item, i) => <div key={i} className=" ">{item}</div>)}
+                                    </div>
                                 </div>
+                                <div className="w-2/3 flex flex-col justify-between">
+                                    <DanhSachThuocTable group={detail.group} thuoc={detail.thuoc} />
+                                    <div className="p-2">
+                                        {detail.i3 && (
+                                            <a
+                                                className=" text-blue-500 underline flex gap-1 items-center "
+                                                href="http://172.20.9.22/preview/10dc653d-7abd-4648-a24a-726bbf513dc3"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Toa thuốc có cảnh báo I3
+                                            </a>
+                                        )}
+                                    </div>
+
+
+                                </div>
+
+
                             </div>
-                            <DanhSachThuocTable group={detail.group} thuoc={detail.thuoc} />
                         </div>
                     ))}
                 </td>

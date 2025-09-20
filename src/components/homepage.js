@@ -23,28 +23,33 @@ function HomePage() {
 
     return (
         <>
-            <div className="min-h-screen bg-gray-50">
-                <div className="flex">
-                    {/* Sidebar */}
-                    <div className="w-56 h-screen fixed bg-[#2C43A8] text-white p-2">
-                        <div className="p-4">
-                            <img src="/img/talogo.png" alt="Logo" className="w-full h-18 mx-auto" />
-
-                        </div>
-                        <div className="mt-20 text-left space-y-1">
-                            <button className={`text-lg w-full block font-semibold cursor-pointer bg-[#017BFB] hover:bg-[#017BFB] px-10 py-1 rounded`}
-                            >
-                                {'Duyệt thuốc'}
-                            </button>
-
-                        </div>
-
+            <div className="h-screen bg-gray-50 overflow-hidden">
+                {/* Sidebar */}
+                <aside className="fixed inset-y-0 left-0 w-56 bg-[#2C43A8] text-white overflow-y-auto">
+                    <div className="p-4">
+                        <img src="/img/talogo.png" alt="Logo" className="w-full mx-auto" />
                     </div>
 
-                    {/* Main Content */}
-                    <div className="flex-1 p-6 ml-56">
-                        <div className="bg-white p-4 rounded-lg shadow-sm mb-6">
-                            <div className="flex items-center gap-4">
+                    <nav className="mt-6 p-2 space-y-2">
+                        <button
+                            type="button"
+                            className="text-lg w-full font-semibold bg-[#017BFB] hover:bg-[#017BFB] px-4 py-2 rounded"
+                        >
+                            Duyệt thuốc
+                        </button>
+                    </nav>
+                </aside>
+
+                {/* Main */}
+                <main className="ml-56 h-full w-[calc(100%-14rem)] flex flex-col">
+                    <div>
+                        <div className="font-bold text-xl p-1 border-b">TAH NỘI TRÚ - BỆNH VIỆN ĐA KHOA TÂM ANH TP. HỒ CHÍ MINH</div>
+
+                    </div>
+                    {/* Filters (non-scrolling header) */}
+                    <div className="px-6 mt-2">
+                        <div className="bg-white p-4 shadow-sm rounded-md">
+                            <div className="flex flex-wrap items-center gap-4">
                                 <div className="flex items-center gap-2">
                                     <label className="text-sm font-medium">Từ ngày:</label>
                                     <input
@@ -54,6 +59,7 @@ function HomePage() {
                                         className="border border-gray-300 rounded px-3 py-1 text-sm"
                                     />
                                 </div>
+
                                 <div className="flex items-center gap-2">
                                     <label className="text-sm font-medium">Đến ngày:</label>
                                     <input
@@ -63,34 +69,50 @@ function HomePage() {
                                         className="border border-gray-300 rounded px-3 py-1 text-sm"
                                     />
                                 </div>
-                                <div className="flex gap-2 items-center">
+
+                                <div className="flex gap-4 items-center">
                                     {trangthais.map((trangthai) => (
-                                        <label className="cursor-pointer">
+                                        <label
+                                            key={trangthai.id}
+                                            className="inline-flex items-center gap-2 cursor-pointer"
+                                        >
                                             <input
                                                 type="radio"
-                                                name='status'
-                                                className="mr-2"
+                                                name="status"
+                                                value={trangthai.id}
                                                 checked={sltTrangThai === trangthai.id}
-                                                onClick={() => setSltTrangThai(trangthai.id)}
+                                                onChange={() => setSltTrangThai(trangthai.id)}
                                             />
                                             {trangthai.name}
                                         </label>
                                     ))}
-
-
-
                                 </div>
-                                <button className="bg-blue-800 text-white px-6 py-2 rounded text-sm font-medium hover:bg-blue-900">
+
+                                <button
+                                    type="button"
+                                    className="bg-blue-800 text-white px-6 py-2 rounded text-sm font-medium hover:bg-blue-900"
+                                >
                                     Xem
                                 </button>
                             </div>
                         </div>
-
-                        <DanhSachPhieuTable setShowTThuoc={setShowTThuoc} sltTrangThai={sltTrangThai} />
-
                     </div>
-                </div>
+
+                    {/* Scrollable content area */}
+                    <section className="flex-1 overflow-auto p-6 pt-4">
+                        <div className="bg-white p-4 rounded-lg shadow-sm">
+                            {/* horizontal scroll if table is wide */}
+                            <div className="overflow-x-auto ">
+                                <DanhSachPhieuTable
+                                    setShowTThuoc={setShowTThuoc}
+                                    sltTrangThai={sltTrangThai}
+                                />
+                            </div>
+                        </div>
+                    </section>
+                </main>
             </div>
+
             <DrugInfoModal show={showTThuoc} setShow={setShowTThuoc} />
         </>
     );
