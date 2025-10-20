@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DanhSachPhieuTable from "./danh-sach-phieu-table";
 import DrugInfoModal from "./thongtinthuoc-modal";
+import GhiChuModal from "./ghi-chu-modal";
 
 function HomePage() {
 
@@ -12,6 +13,8 @@ function HomePage() {
 
     const [showTThuoc, setShowTThuoc] = useState(false);
     const [sltTrangThai, setSltTrangThai] = useState('chuaduyet');
+    const [showGhiChu, setShowGhiChu] = useState(false);
+    const [noted, setNoted] = useState('');
 
     const trangthais = [
         { id: "chuaduyet", name: "Chưa Duyệt" },
@@ -106,6 +109,8 @@ function HomePage() {
                                 <DanhSachPhieuTable
                                     setShowTThuoc={setShowTThuoc}
                                     sltTrangThai={sltTrangThai}
+                                    setShowGhiChu={setShowGhiChu}
+                                    setNoted={setNoted}
                                 />
                             </div>
                         </div>
@@ -114,6 +119,7 @@ function HomePage() {
             </div>
 
             <DrugInfoModal show={showTThuoc} setShow={setShowTThuoc} />
+            {showGhiChu && <GhiChuModal setShow={setShowGhiChu} ghichu={noted} />}
         </>
     );
 }

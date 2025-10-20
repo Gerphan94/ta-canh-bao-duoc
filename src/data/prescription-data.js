@@ -33,7 +33,7 @@ export const UnapprovedPrescription = [
         gioitinh: 'Nữ',
         ngaysinh: '16/11/1980',
         chandoan: 'Loãng xương (M81)',
-        i3: true,
+        i3: false,
         trangthai: 'Chưa duyệt',
         group: [
             {

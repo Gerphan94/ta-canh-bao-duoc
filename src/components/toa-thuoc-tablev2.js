@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Patient } from "../data/patient-data";
 import { UnapprovedPrescription, ApprovedPrescription } from "../data/prescription-data";
 import DanhSachThuocTable from "./danh-sach-thuoc-table";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 import ConfirmModal from "./confirm-modal";
 function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
@@ -75,7 +74,6 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                                             <>
                                                 <button className="  bg-red-500 text-white rounded px-2 py-0.5" onClick={() => handleClick(detail.mabn, 'tuchoi')} >Từ chối</button>
                                                 <button className=" bg-blue-500 text-white rounded px-2 py-0.5" onClick={() => handleDuyet(detail.mabn, 'Đồng ý')} >Đồng ý</button>
-
                                             </>
                                             :
                                             <button className=" bg-blue-500 text-white rounded px-2 py-0.5" onClick={() => handleDuyet(detail.mabn, 'Chưa duyệt')} >Duyệt lại</button>
@@ -85,11 +83,11 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                             </div>
                             <div className="flex">
                                 <div className="w-1/3 p-4 border-r">
-                                    <div className="flex gap-2 items-center"><div className="font-semibold">Ngày y lệnh:</div> {ngay} {detail.gioylenh}</div>
-
-                                    <div className=" rounded-md font-medium ">Chẩn đoán:</div>
+                                    <div className="flex gap-2 items-center"><div className="font-semibold underline">Ngày y lệnh:</div> {ngay} {detail.gioylenh}</div>
+                                    <div className=" rounded-md font-medium underline ">Chẩn đoán:</div>
                                     <div className="">
-                                        {detail.chandoan.split(';').map((item, i) => <div key={i} className=" ">{item}</div>)}
+                                        {detail.chandoan.split(';').map((item, i) =>
+                                            <div key={i} className=" ">{item}</div>)}
                                     </div>
                                 </div>
                                 <div className="w-2/3 flex flex-col justify-between">

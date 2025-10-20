@@ -7,10 +7,13 @@ const data = [
         gioylenh: '14:00',
         mabn: '2510001304',
         hoten: 'Nguyễn Thị Hồng',
-        chandoan: 'Cao huyết áp (I10)',
+        gioitinh: 'Nữ',
+        ngaysinh: '01/01/2000',
+        chandoan: 'Cao huyết áp (I10); Đái tháo đường týp 2 (E11); Rối loạn mỡ máu (E78.5); Béo phì (E66.9); Bệnh mạch vành (I25.1); Hen phế quản (J45.9); Viêm dạ dày mạn (K29.5); Trào ngược dạ dày-thực quản (K21.9); Bệnh thận mạn (N18.9); Thiếu máu không xác định (D64.9)',
+
         i3: true,
-        trangthai: 'Đồng ý',
-        ghichu: 'Đồng ý với y lệnh bác sĩ',
+        trangthai: 'Từ chối',
+        ghichu: 'Toa thuốc không hợp lệ',
         group: [
             {
                 cachpha: "Pha với nước cất",
@@ -32,6 +35,8 @@ const data = [
         gioylenh: '12:00',
         mabn: '2410008542',
         hoten: 'Phan Thị Hoa',
+        gioitinh: 'Nữ',
+        ngaysinh: '16/11/1980',
         chandoan: 'Loãng xương (M81)',
         i3: true,
         trangthai: 'Từ chối',
@@ -52,7 +57,12 @@ const data = [
         ]
     },
     {
-        gioylenh: '11:00', mabn: '2520013641', hoten: 'Trương Văn Phúc', chandoan: 'Sỏi thận (N20)', i3: false, trangthai: 'Đồng ý',
+        gioylenh: '11:00',
+        mabn: '2520013641',
+        hoten: 'Trương Văn Phúc',
+        gioitinh: 'Nam',
+        ngaysinh: '16/11/2002',
+        chandoan: 'Sỏi thận (N20)', i3: false, trangthai: 'Đồng ý',
         ghichu: 'Đồng ý với y lệnh bác sĩ',
         group: [],
         thuoc: [
@@ -71,8 +81,8 @@ export default function LichSuDuyetModal({ setShow }) {
 
 
     const lichsu = [
-        { ngayduyet: '19/09/2025 08:00', nguoiduyet: "Nguyễn Thị Hồng", ghichu: "Cách dùng thuốc chưa đúng", trangthai: "Từ chối" },
-        { ngayduyet: '18/09/2025 12:00', nguoiduyet: "Nguyễn Thị Hồng", ghichu: "Sai chẩn đoán", trangthai: "Từ chối" },
+        { ngayduyet: '19/09/2025 ', gioduyet: '16:00',nguoiduyet: "Nguyễn Thị Hồng", ghichu: "Cách dùng thuốc chưa đúng", trangthai: "Từ chối" },
+        { ngayduyet: '18/09/2025 ', gioduyet: '12:00', nguoiduyet: "Nguyễn Thị Hồng", ghichu: "Sai chẩn đoán", trangthai: "Từ chối" },
 
     ]
 
@@ -127,10 +137,10 @@ const LichSuRow = ({ lichsu }) => {
     return (
         <>
             <div className="p-2">
-                <div className="w-full flex justify-between px-6 py-1 bg-blue-300 "
+                <div className="w-full flex justify-between px-6 py-1 bg-[#2C43A8] text-white "
                     onClick={() => setShow(!show)}
                 >
-                    <div className="flex-1 text-left"><strong>Ngày duyệt: </strong>{lichsu.ngayduyet}</div>
+                    <div className="flex-1 text-left"><strong>Ngày duyệt: </strong>{lichsu.ngayduyet} {lichsu.gioduyet}</div>
                     <div className="flex-1 text-left"><strong>Người duyệt: </strong>{lichsu.nguoiduyet}</div>
                     <div className="flex-1 text-left"><strong>Trạng thái: </strong>{lichsu.trangthai}</div>
                     <div className="flex-1 text-left"><strong>Ghi chú: </strong>{lichsu.ghichu}</div>
@@ -142,20 +152,11 @@ const LichSuRow = ({ lichsu }) => {
                             <div key={detail.id} className="mb-2 text-left border rounded-xl">
                                 <div className="flex justify-between bg-gray-300 p-2 rounded-t-lg w-full">
                                     <div className=" flex gap-2 items-center w-full ">
-                                        <div className="flex gap-2 items-center"><div className="font-semibold">Ngày y lệnh:</div>  {detail.gioylenh}</div>
-                                        <div className="flex gap-2 items-center"><div className="font-semibold">PID:</div> {detail.mabn}</div>
+                                        <div className="flex gap-2 items-center"><div className="font-semibold">Mã BN:</div> {detail.mabn}</div>
                                         <div className="flex gap-2 items-center"><div className="font-semibold">Họ tên: </div> {detail.hoten}</div>
-                                        <div className="flex gap-2 items-center"><div className="font-semibold">Chẩn đoán</div> {detail.chandoan}</div>
-                                        {detail.i3 && (
-                                            <a
-                                                className="inline-block border px-2 py-1 rounded-md bg-blue-700 text-white "
-                                                href="http://172.20.9.22/preview/10dc653d-7abd-4648-a24a-726bbf513dc3"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                Xem I3
-                                            </a>
-                                        )}
+                                        <div className="flex gap-2 items-center"><div className="font-semibold">Giới tính: </div> {detail.gioitinh}</div>
+                                        <div className="flex gap-2 items-center"><div className="font-semibold">Ngày sinh: </div> {detail.ngaysinh}</div>
+
                                     </div>
                                     <div className="flex gap-4 items-center w-20">
                                         <div className="italic inline-block">
@@ -164,8 +165,32 @@ const LichSuRow = ({ lichsu }) => {
 
                                     </div>
                                 </div>
-                                <div>
-                                    <DanhSachThuocTable group={detail.group} thuoc={detail.thuoc} />
+                                <div className="flex">
+                                    <div className="w-1/3 p-4 border-r">
+                                        <div className="flex gap-2 items-center"><div className="font-semibold underline">Ngày y lệnh:</div>{lichsu.ngayduyet}{detail.gioylenh}</div>
+                                        <div className=" rounded-md font-medium underline ">Chẩn đoán:</div>
+                                        <div className="">
+                                            {detail.chandoan.split(';').map((item, i) =>
+                                                <div key={i} className=" ">{item}</div>)}
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col justify-between">
+                                        <DanhSachThuocTable group={detail.group} thuoc={detail.thuoc} />
+
+                                        <div className="p-2">
+                                            {detail.i3 && (
+                                                <a
+                                                    className=" text-blue-500 underline flex gap-1 items-center "
+                                                    href="http://172.20.9.22/preview/10dc653d-7abd-4648-a24a-726bbf513dc3"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    Toa thuốc có cảnh báo I3
+                                                </a>
+                                            )}
+                                        </div>
+                                    </div>
+
                                 </div>
                                 {detail.trangthai === 'Từ chối' && (
                                     <div className="p-2 space-y-1">

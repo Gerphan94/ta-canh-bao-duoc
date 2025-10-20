@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdOutlineWarningAmber } from "react-icons/md";
 import DrugInfoModal from "./thongtinthuoc-modal";
 
-function DanhSachThuocTable( {group, thuoc } ) {
+function DanhSachThuocTable({ group, thuoc }) {
 
     const [show, setShow] = useState(false);
 
@@ -10,18 +10,23 @@ function DanhSachThuocTable( {group, thuoc } ) {
         <>
             <div className="list-disc pl-5 text-sm space-2 text-gray-700 py-4">
                 {group.map((g, idx) => (
-                    <div className="border-l-2 border-gray-400 pl-2 mb-1 ">
-                        {g.data.map((group, idx) => (
-                            <div key={idx} className="">
-                                <div className="flex gap-2 items-center">
-                                    {group.day > 0 && <span className="font-medium text-xs border border-black rounded-full w-4 h-4 flex items-center justify-center">{group.day}</span>}
-                                    <div className="font-bold hover:underline cursor-pointer" onClick={() => setShow(true)} >{group.name}</div>
-                                    <div>{group.desc}</div>
+                    <div className="flex">
+                        <div className="w-1.5 border-l-2 border-y-2 rounded-l-xl border-blue-400">
+                        </div>
+                        <div className="  pl-2 ">
+                            {g.data.map((group, idx) => (
+                                <div key={idx} className="">
+                                    <div className="flex gap-2 items-center">
+                                        {group.day > 0 && <span className="font-medium text-xs border border-black rounded-full w-4 h-4 flex items-center justify-center">{group.day}</span>}
+                                        <div className="font-bold hover:underline cursor-pointer" onClick={() => setShow(true)} >{group.name}</div>
+                                        <div>{group.desc}</div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                        <div className="pl-2 italic py-1">{group && g.cachpha}</div>
+                            ))}
+                            <div className="pl-2 italic py-1">{group && g.cachpha}</div>
+                        </div>
                     </div>
+
                 ))}
                 {thuoc.map((item, idx) => (
                     <div key={idx}>

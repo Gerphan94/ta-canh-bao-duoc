@@ -2,18 +2,17 @@ import { useEffect, useState } from "react";
 import { DanhsachPhieu } from "../data/receipt-data";
 import ToaThuocTable from "./toa-thuoc-tablev2";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
-import ConfirmPhieuModal from "./confirm-phieu-modal";
 import LichSuDuyetModal from "./lich-su-duyet-modal";
 import ConfirmMokhoa from "./comfirm-mokhoa";
 import Pagination from "./pagination";
-import { FaCheck , FaHistory, FaUnlockAlt  } from "react-icons/fa";
+import {  FaHistory, FaUnlockAlt } from "react-icons/fa";
+import { ButtonTooltip } from "./btnTooltip";
+import { MdNoteAlt } from "react-icons/md";
 
-export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
+export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai, setShowGhiChu, setNoted }) {
     const [expandedRows, setExpandedRows] = useState([]);
-    const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [showLSDuyetModal, setShowLSDuyetModal] = useState(false);
     const [showMokhoaModal, setShowMokhoaModal] = useState(false);
-    const [r, setR] = useState(0);
 
     const filterData = DanhsachPhieu.filter((item) => {
         if (sltTrangThai === "chuaduyet") {
@@ -38,9 +37,10 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
         );
     };
 
-    const handleConfirm = () => {
-        setShowConfirmModal(true);
-        setR(Math.floor(Math.random() * 3));
+    const onShowGhiChu = (note) => {
+        setNoted(note);
+        setShowGhiChu(true);
+
     }
 
 
@@ -68,13 +68,13 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                             <tr
                                 key={row.id}
                                 className={`cursor-pointer hover:bg-gray-50 text-left border-b truncate select-none ${row.trangthai === 'duyetlai' && 'text-red-400'}`}
-                               
+
                             >
                                 <td className=" border-gray-300 px-2 py-1 text-center flex gap-3 items-center">
-                                    <div 
-                                    className="border border-gray-200 rounded-md px-1 py-1 text-blue-300"
-                                     onClick={() => toggleExpand(row.id)}
-                                    
+                                    <div
+                                        className="border border-gray-200 rounded-md px-1 py-1 text-blue-300"
+                                        onClick={() => toggleExpand(row.id)}
+
                                     >
                                         {expandedRows.includes(row.id) ? <FaAngleDown /> : <FaAngleRight />}
                                     </div>
@@ -99,28 +99,41 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                                 <td className="border-r border-gray-300 px-2 py-1">{row.ghichu}</td>
                                 <td className="px-2 py-1">
                                     <div className="flex gap-2">
-                                        {(row.trangthai === 'chuaduyet' || row.trangthai === 'dangduyet' || row.trangthai === 'duyetlai') &&
+                                        {/* {(row.trangthai === 'chuaduyet' || row.trangthai === 'dangduyet' || row.trangthai === 'duyetlai') &&
+                                            <ButtonTooltip text="Xác nhận" >
+                                                <button
+                                                    className="bg-blue-400 hover:bg-[#017BFB] text-white p-1.5 rounded text-sm "
+                                                    onClick={() => handleConfirm()}
+                                                >
+                                                    <FaCheck className="size-4" />
+                                                </button>
+                                            </ButtonTooltip>
+                                        } */}
+                                        <ButtonTooltip text="Nhập ghi chú" >
                                             <button
-                                                className="bg-blue-400 hover:bg-[#017BFB] text-white p-1.5 rounded text-sm "
-                                                onClick={() => handleConfirm()}
-                                            >
-                                                <FaCheck className="size-4" />
-                                            </button>}
+                                                className="bg-blue-400 hover:bg-[#017BFB] text-white p-1.5 rounded text-sm"
+                                                onClick={() => onShowGhiChu(row.ghichu)} >
+                                                <MdNoteAlt className="size-4" />
+                                            </button>
+                                        </ButtonTooltip>
+                                        
                                         {row.trangthai === 'duyetlai' &&
                                             <div className="flex gap-2 items-center">
-
-                                                <button 
-                                                className="bg-blue-400 hover:bg-[#017BFB] text-white p-1.5 rounded text-sm" 
-                                                onClick={() => setShowLSDuyetModal(true)} >
-                                                    <FaHistory className="size-4" />
+                                                <ButtonTooltip text="Lịch sử" >
+                                                    <button
+                                                        className="bg-blue-400 hover:bg-[#017BFB] text-white p-1.5 rounded text-sm"
+                                                        onClick={() => setShowLSDuyetModal(true)} >
+                                                        <FaHistory className="size-4" />
                                                     </button>
+                                                </ButtonTooltip>
+
 
                                             </div>
                                         }
-                                        {(row.trangthai === 'tuchoi' || row.trangthai === 'dongy' || row.trangthai === 'dangduyet') &&
+                                        {(row.trangthai === 'tuchoi' || row.trangthai === 'dongy') &&
                                             <button className="bg-blue-400 hover:bg-[#017BFB] text-white p-1.5 rounded text-sm" onClick={() => setShowMokhoaModal(true)}>
-                                                <FaUnlockAlt  className="size-4" />
-                                                </button>}
+                                                <FaUnlockAlt className="size-4" />
+                                            </button>}
                                     </div>
                                 </td>
                             </tr>
@@ -135,7 +148,7 @@ export default function DanhSachPhieuTable({ setShowTThuoc, sltTrangThai }) {
                 currentPage={1}
                 totalPage={1}
             />
-            {showConfirmModal && <ConfirmPhieuModal setShow={setShowConfirmModal} r={r} />}
+            {/* {showConfirmModal && <ConfirmPhieuModal setShow={setShowConfirmModal} r={r} />} */}
             {showLSDuyetModal && <LichSuDuyetModal setShow={setShowLSDuyetModal} />}
             {showMokhoaModal && <ConfirmMokhoa setShow={setShowMokhoaModal} />}
         </div>
