@@ -1,23 +1,6 @@
-import { useState, useRef } from "react";
 
 function ConfirmMokhoa({ setShow, mabn, onClick, confirmType }) {
 
-
-
-    const [lyDo, setLyDo] = useState('');
-    const inputRef = useRef(null);
-
-
-    const handleClickTuChoi = () => {
-        if (!lyDo.trim()) {
-            // If empty, focus the input
-            inputRef.current?.focus();
-            return;
-        }
-
-        setShow(false);
-        onClick(mabn, confirmType === 'dongy' ? 'Đồng ý' : 'Từ chối');
-    };
 
     return (
         <>

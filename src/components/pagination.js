@@ -47,19 +47,7 @@ function Pagination({ currentPage, setCurrentPage, totalPage }) {
         return visiblePages;
     };
 
-    const mobileView = () => {
-        const visiblePages = []
-
-        const startPage = Math.max(1, currentPage === totalPage ? currentPage - 2 : currentPage - 1);
-        const endPage = Math.min(totalPage, currentPage === 1 && totalPage > 3 ? 3 : currentPage + 1);
-
-        for (let i = startPage; i <= endPage; i++) {
-            visiblePages.push(i);
-        }
-        return visiblePages;
-
-    }
-
+    
 
     return (
         <div className="px-4 py-1 bg-slate-100 w-full flex flex-row-reverse justify-between">

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Patient } from "../data/patient-data";
 import { UnapprovedPrescription, ApprovedPrescription } from "../data/prescription-data";
 import DanhSachThuocTable from "./danh-sach-thuoc-table";
 

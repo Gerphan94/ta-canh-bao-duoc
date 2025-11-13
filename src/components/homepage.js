@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DanhSachPhieuTable from "./danh-sach-phieu-table";
 import DrugInfoModal from "./thongtinthuoc-modal";
 import GhiChuModal from "./ghi-chu-modal";
