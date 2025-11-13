@@ -78,7 +78,7 @@ function HomePage() {
                     {/* Filters (non-scrolling header) */}
                     <div className="px-6 mt-2">
                         <div className="bg-white p-4 shadow-sm rounded-md">
-                            <div className="grid grid-cols-4 gap-4">
+                            <div className="flex items-center gap-4">
                                 <div className="flex justify-between items-center gap-2">
                                     <label className="text-sm font-medium">Từ ngày:</label>
                                     <input
@@ -89,7 +89,7 @@ function HomePage() {
                                     />
                                 </div>
 
-                                <div className="flex justify-between items-center gap-2">
+                                <div className="flex lg:justify-end md:justify-between items-center gap-2">
                                     <label className="text-sm font-medium">Đến ngày:</label>
                                     <input
                                         type="date"
@@ -117,6 +117,8 @@ function HomePage() {
                                     ))}
                                 </div>
 
+                            </div>
+                            <div className="flex gap-4 items-center py-2">
                                 <input
                                     type="text"
                                     className="border outline-none px-2 py-1 rounded"
@@ -134,7 +136,7 @@ function HomePage() {
                                 </select>
                                 <button
                                     type="button"
-                                    className="w-1/2 bg-blue-800 text-white px-6 py-2 rounded text-sm font-medium hover:bg-blue-900"
+                                    className="w-32 bg-blue-800 text-white px-6 py-2 rounded text-sm font-medium hover:bg-blue-900"
                                 >
                                     Xem
                                 </button>
