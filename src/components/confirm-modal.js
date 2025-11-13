@@ -9,20 +9,17 @@ function ConfirmModal({ setShow, mabn, onClick, confirmType }) {
     const lydos = [
         '', 'Sai ICD', "Quá liều lượng", "Sai đường dùng", "Sai cách dùng", "Sai tương tác thuốc", "Sai liều lượng",
     ]
-    const [sltlydo, setSltlydo] = useState('')
+    // const [sltlydo, setSltlydo] = useState('')
 
-    const handleAddLydo = () => {
-        if (!sltlydo) return; // không thêm khi trống
+    // const handleAddLydo = () => {
+    //     if (!sltlydo) return; 
 
-        // Nếu lydo đang trống, chỉ set lý do đầu tiên
-        // Nếu đã có rồi, nối thêm bằng dấu ;
-        // Nếu sltlydo đã có trong lydo, khong thêm
-        if (lydo.includes(sltlydo)) return;
+    //     if (lydo.includes(sltlydo)) return;
 
-        setLydo(prev => prev ? `${prev}; ${sltlydo}` : sltlydo);
+    //     setLydo(prev => prev ? `${prev}; ${sltlydo}` : sltlydo);
 
-        setSltlydo(''); // reset select sau khi thêm
-    };
+    //     setSltlydo(''); // reset select sau khi thêm
+    // };
 
 
     const handleClickTuChoi = () => {
@@ -43,7 +40,7 @@ function ConfirmModal({ setShow, mabn, onClick, confirmType }) {
                     <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">Xác nhận {confirmType === 'dongy' ? "đồng ý" : "từ chối"}</h2>
                     <MultiSelect options={lydos} />
 
-                    <div className="flex gap-2 items-center py-2">
+                    {/* <div className="flex gap-2 items-center py-2">
                         <select
                             className="w-full border px-2 py-1 outline-none rounded"
                             value={sltlydo}
@@ -56,7 +53,7 @@ function ConfirmModal({ setShow, mabn, onClick, confirmType }) {
                         <button className=" border bg-blue-500 text-white px-2 py-1 rounded"
                             onClick={handleAddLydo}
                         >Chọn</button>
-                    </div>
+                    </div> */}
                     <div>
                         <textarea
                             ref={inputRef}
