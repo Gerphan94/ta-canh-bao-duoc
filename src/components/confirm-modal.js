@@ -7,7 +7,7 @@ function ConfirmModal({ setShow, mabn, onClick, confirmType }) {
     const inputRef = useRef(null);
     const [lydo, setLydo] = useState('');
     const lydos = [
-        '', 'Sai ICD', "Quá liều lượng", "Sai đường dùng", "Sai cách dùng", "Sai tương tác thuốc", "Sai liều lượng",
+        'Sai ICD', "Quá liều lượng", "Sai đường dùng", "Sai cách dùng", "Sai tương tác thuốc", "Sai liều lượng",
     ]
     // const [sltlydo, setSltlydo] = useState('')
 
@@ -35,8 +35,8 @@ function ConfirmModal({ setShow, mabn, onClick, confirmType }) {
 
     return (
         <>
-            <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-                <div className="bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-y-auto px-6 py-6">
+            <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-40">
+                <div className="bg-white rounded-lg shadow-lg max-w-lg w-full max-h-[90vh] overflow-y-off px-6 py-6">
                     <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">Xác nhận {confirmType === 'dongy' ? "đồng ý" : "từ chối"}</h2>
                     <MultiSelect options={lydos} />
 
@@ -54,7 +54,8 @@ function ConfirmModal({ setShow, mabn, onClick, confirmType }) {
                             onClick={handleAddLydo}
                         >Chọn</button>
                     </div> */}
-                    <div>
+                    <div  className="text-left">
+                        <label className="font-semibold text-gray-700">Lý do khác</label>
                         <textarea
                             ref={inputRef}
                             value={lydo}
@@ -62,8 +63,8 @@ function ConfirmModal({ setShow, mabn, onClick, confirmType }) {
                             spellCheck="false"
                             autoComplete="off"
                             onChange={(e) => setLydo(e.target.value)}
-                            className="w-full border border-gray-300 rounded-md p-2 outline-none"
-                            placeholder={`Nhập lý do ${confirmType === 'dongy' ? "đồng ý" : "từ chối"}...`}
+                            className="w-full border border-gray-300 rounded-md p-2 outline-none mt-1"
+                            placeholder={`Nhập lý do khác`}
                         />
                     </div>
 
@@ -83,7 +84,7 @@ function ConfirmModal({ setShow, mabn, onClick, confirmType }) {
                     </div>
                 </div>
             </div>
-            <div className="opacity-75 fixed inset-0 z-40 bg-black"></div>
+            <div className="opacity-75 fixed inset-0 z-30 bg-black"></div>
         </>
     )
 }

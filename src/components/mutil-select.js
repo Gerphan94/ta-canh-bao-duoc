@@ -24,7 +24,7 @@ export default function MultiSelect({ options }) {
   }, []);
 
   return (
-    <div className="w-full max-w-3xl mx-auto text-left relative">
+    <div className="w-full max-w-3xl mx-auto text-left relative py-2 z-40">
       <label className="font-semibold text-gray-700">Lý do</label>
 
       <div
@@ -53,7 +53,7 @@ export default function MultiSelect({ options }) {
       {showDropdown && (
         <div
           ref={dropdownRef}
-          className="border rounded-md mt-1 bg-white shadow absolute z-10 w-full max-h-60 overflow-y-auto"
+          className="border rounded-md mt-1 bg-white shadow absolute w-full max-h-60 overflow-y-auto z-[9999]"
         >
           {options.map((option) => (
             <div
