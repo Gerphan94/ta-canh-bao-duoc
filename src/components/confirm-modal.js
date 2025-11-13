@@ -11,7 +11,6 @@ function ConfirmModal({ setShow, mabn, onClick, confirmType }) {
     ]
     const [sltlydo, setSltlydo] = useState('')
 
-    const [showLydo, setShowLydo] = useState(false);
     const handleAddLydo = () => {
         if (!sltlydo) return; // không thêm khi trống
 
