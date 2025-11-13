@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo, useCallback, memo } from 'react';
+import { useEffect, useRef, useState, useMemo, useCallback, memo } from 'react';
 import { FaAngleDown } from "react-icons/fa6";
 
 const Dropdown = memo(({

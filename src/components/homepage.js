@@ -2,7 +2,7 @@ import { useState } from "react";
 import DanhSachPhieuTable from "./danh-sach-phieu-table";
 import DrugInfoModal from "./thongtinthuoc-modal";
 import GhiChuModal from "./ghi-chu-modal";
-
+import Dropdown from "./dropdown";
 function HomePage() {
 
 
@@ -26,7 +26,6 @@ function HomePage() {
 
 
     const khoas = [
-        { id: 0, name: "" },
         { id: 1, name: "Tủ trực phòng Cấp cứu sàng lọc" },
         { id: 2, name: "Khoa Nội tổng quát" },
         { id: 3, name: "Tủ trực Khoa Cấp Cứu" },
@@ -125,15 +124,9 @@ function HomePage() {
                                     placeholder="Nhập PID"
                                 />
 
-                                <select
-                                    className="col-span-2 border outline-none px-2 py-1 rounded"
-                                >
-                                    {khoas.map((khoa) => (
-                                        <option key={khoa.id} value={khoa.id}>
-                                            {khoa.name}
-                                        </option>
-                                    ))}
-                                </select>
+                                <Dropdown
+                                    data={khoas}
+                                />
                                 <button
                                     type="button"
                                     className="w-32 bg-blue-800 text-white px-6 py-2 rounded text-sm font-medium hover:bg-blue-900"
