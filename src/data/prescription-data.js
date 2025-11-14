@@ -83,7 +83,8 @@ export const ApprovedPrescription = [
         ngaysinh: '16/11/2012',
         chandoan: 'Viêm loét dạ dày tá tràng (K25)', 
         i3: true, 
-        trangthai: 'Đồng ý',
+        trangthai: 'Từ chối',
+        lydotuchoi: 'ICD gợi ý; Dị ứng; Có thai\nDòng này là lý do nhập tay',
         group: [],
         thuoc: [
             { id: 2, name: "Amoxicillin 500mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 1, ard: false },   // Kháng sinh
@@ -101,6 +102,7 @@ export const ApprovedPrescription = [
         chandoan: 'Viêm loét dạ dày tá tràng (K25)', 
         i3: true, 
         trangthai: 'Đồng ý',
+        lydotuchoi: '',
         group: [
             {
                 cachpha: "Pha với Glucose 5%",
@@ -125,6 +127,7 @@ export const ApprovedPrescription = [
         chandoan: 'Sỏi thận (N20)', 
         i3: false,
          trangthai: 'Đồng ý',
+          lydotuchoi: '',
         group: [],
         thuoc: [
             { id: 8, name: "Clarithromycin 500mg", desc: "Uống 1 viên/lần * 2 lần/ngày", day: 1, ard: false }, // Kháng sinh

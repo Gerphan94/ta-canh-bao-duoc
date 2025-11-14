@@ -38,7 +38,6 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
         );
     };
 
-
     return (
         <>
 
@@ -52,17 +51,6 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                                     <div className="flex gap-2 items-center"><div className="font-semibold">Họ tên: </div> {detail.hoten}</div>
                                     <div className="flex gap-2 items-center"><div className="font-semibold">Ngày sinh: </div> {detail.ngaysinh}</div>
                                     <div className="flex gap-2 items-center"><div className="font-semibold">Giới tính: </div> {detail.gioitinh}</div>
-
-                                    {/* {detail.i3 && (
-                                        <a
-                                            className="inline-block border px-2 py-1 rounded-md bg-blue-700 text-white "
-                                            href="http://172.20.9.22/preview/10dc653d-7abd-4648-a24a-726bbf513dc3"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            Xem I3
-                                        </a>
-                                    )} */}
                                 </div>
                                 <div className="flex gap-4 items-center">
                                     <div className="italic">
@@ -88,6 +76,17 @@ function ToaThuocTable({ ngay, trangthaiphieu, sltTrangThai }) {
                                         {detail.chandoan.split(';').map((item, i) =>
                                             <div key={i} className=" ">{item}</div>)}
                                     </div>
+                                    <div className="text-red-500 py-4">
+    {detail.lydotuchoi && (
+        <>
+            <p className="font-semibold">Lý do từ chối</p>
+            <p className="whitespace-pre-line">
+                {detail.lydotuchoi}
+            </p>
+        </>
+    )}
+</div>
+
                                 </div>
                                 <div className="w-2/3 flex flex-col justify-between">
                                     <DanhSachThuocTable group={detail.group} thuoc={detail.thuoc} />
