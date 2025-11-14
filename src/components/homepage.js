@@ -75,7 +75,7 @@ function HomePage() {
 
                     </div>
                     {/* Filters (non-scrolling header) */}
-                    <div className="px-6 mt-2">
+                    <div className="px-6 mt-2 xl:w-2/3 md:w-full">
                         <div className="bg-white p-4 shadow-sm rounded-md">
                             <div className="flex items-center gap-4">
                                 <div className="flex justify-between items-center gap-2">

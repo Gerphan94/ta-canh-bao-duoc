@@ -53,7 +53,7 @@ export default function MultiSelect({ options }) {
       {showDropdown && (
         <div
           ref={dropdownRef}
-          className="border rounded-md mt-1 bg-white shadow absolute w-full max-h-60 overflow-y-auto z-[9999]"
+          className="border rounded-md mt-1 bg-white shadow absolute w-full max-h-[420px] overflow-y-auto z-[9999]"
         >
           {options.map((option) => (
             <div

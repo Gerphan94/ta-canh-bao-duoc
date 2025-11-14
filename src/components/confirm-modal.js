@@ -7,8 +7,11 @@ function ConfirmModal({ setShow, mabn, onClick, confirmType }) {
     const inputRef = useRef(null);
     const [lydo, setLydo] = useState('');
     const lydos = [
-        'Sai ICD', "Quá liều lượng", "Sai đường dùng", "Sai cách dùng", "Sai tương tác thuốc", "Sai liều lượng",
+        'ICD gợi ý', "Dị ứng", " Có thai", " Tương tác thuốc - thuốc", "Trùng dược tính", "Tương tác thuốc - bệnh", " Tương kỵ",
+        "Không dung môi tương hợp", "Sai đường dùng", "Quá liều"
     ]
+
+
     // const [sltlydo, setSltlydo] = useState('')
 
     // const handleAddLydo = () => {
